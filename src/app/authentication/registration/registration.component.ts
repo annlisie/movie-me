@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
 
     register(email: string, password: string) {
 
-        const url = 'http://localhost:8443/users';
+        const url = 'https://localhost:8443/users';
 
         const headers = new Headers ({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers});
