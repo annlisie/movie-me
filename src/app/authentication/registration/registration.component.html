@@ -1,0 +1,21 @@
+<div class="container">
+    <form (ngSubmit) = "f.valid && register(model.email, model.password, model.confirmPassword)" #f="ngForm" novalidate>
+        <h3>Rejestracja</h3>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" [(ngModel)]="model.email" #email="ngModel" autofocus required>
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Podaj e-mail</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" [(ngModel)]="model.password" #password="ngModel" required>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Podaj hasło</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmPassword.valid }">
+            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Powtórz hasło" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" required>
+            <div *ngIf="f.submitted && !confirmPassword.valid" class="help-block">Podaj hasło</div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-block">Zarejestruj się</button>
+        </div>
+    </form>
+</div>
