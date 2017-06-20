@@ -1,0 +1,33 @@
+@font-face {
+  font-family: moviemeFont;
+  src: url(october_twilight.ttf);
+}
+
+.navbar {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-family: moviemeFont;
+  font-size: 25px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.form-control, .btn {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  border-color: #990033;
+  box-shadow: none;
+}
