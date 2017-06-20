@@ -8,10 +8,16 @@ import { RegistrationComponent } from './authentication/registration/registratio
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentication/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegistrationComponent }
+  { path: 'register', component: RegistrationComponent },
+  { path: 'home', component: HomeComponent},
+  { path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 
 ];
 
@@ -20,7 +26,8 @@ const routes: Routes = [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
