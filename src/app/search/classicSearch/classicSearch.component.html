@@ -1,0 +1,50 @@
+<div class="container">
+    <h4>Wyszukiwanie klasyczne</h4>
+    <div></div>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Gatunek:</label> <!--<span class="glyphicon glyphicon-menu-down"></span>-->
+        <div *ngFor="let genre of genres">
+            <label class="col-md-2">
+                <input type="checkbox"
+                       name="genres"
+                       [(ngModel)]="genre.checked"/>
+                {{genre.name}}
+            </label>
+        </div>
+    </div>
+    <p></p>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Rok produkcji:</label>
+        <div>
+            <div class="col-md-2 col-lg-2">
+                <label>Od: </label>
+                <select [(ngModel)]="selectedYear">
+                    <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+                </select>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <label>Do: </label>
+                <select [(ngModel)]="selectedYearEnd">
+                    <option *ngFor="let yearEnd of yearsEnd" [ngValue]="yearEnd">{{yearEnd}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Ocena:</label>
+        <div>
+            <div class="col-md-3 col-lg-3">
+                <!--<input id="ex16b" type="text"/>-->
+                <label>
+                    <input id="rate" type="range" name="rate" min="0" max="10" value="5" step="1" [(ngModel)]="value" (ngModelChange)="updateRating($event)"/>
+                    <span id="range" >{{value}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-block">Szukaj</button>
+    </div>
+</div>
+

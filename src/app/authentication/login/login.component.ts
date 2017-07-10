@@ -28,9 +28,16 @@ export class LoginComponent implements OnInit {
       password: password
     };
 
+
     return this.http.post( url, data, options )
       .map((res: Response) => res.json())
-      .subscribe();
+      .subscribe(
+        function(response) { alert("Success Response" + response)},
+        function(error) { alert("Error happened" + error)},
+        function() { alert("the subscription is completed")}
+      );
   }
+
+
 
 }
