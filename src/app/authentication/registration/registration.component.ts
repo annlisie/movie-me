@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Component ({
     selector: 'app-authentication-registration',
     templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.css']
+    styleUrls: ['../authentication.component.scss']
 })
 
 export class RegistrationComponent implements OnInit {

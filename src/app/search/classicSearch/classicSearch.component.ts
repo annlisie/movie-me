@@ -9,7 +9,7 @@ import 'jquery-ui/ui/widget.js';
 @Component ({
     selector: 'app-classic-search',
     templateUrl: './classicSearch.component.html',
-    styleUrls: ['./classicSearch.component.css']
+    styleUrls: ['../search.component.scss', './classicSearch.component.scss']
 })
 
 
@@ -27,6 +27,8 @@ export class ClassicSearchComponent implements OnInit{
 
     years: any[];
     yearsEnd: any[];
+
+    // range:Array<number> = [1,2,3,4,5];
 
     @Input() value:number;
     @Output() public valueChange:EventEmitter<string> = new EventEmitter<String>();
@@ -50,7 +52,7 @@ export class ClassicSearchComponent implements OnInit{
     selectedYearEnd = 2017;
 
     ngOnInit(){
-        this.value = 5;
+        this.value = 0;
        // $("#ex16b").slider({ min: 0, max: 10, value: [0, 10], focus: true });
     }
 

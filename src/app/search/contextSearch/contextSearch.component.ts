@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component ({
     selector: 'app-context-search',
     templateUrl: './contextSearch.component.html',
-    styleUrls: ['./contextSearch.component.css']
+    styleUrls: ['../search.component.scss', './contextSearch.component.scss']
 })
 
 export class ContextSearchComponent {
@@ -18,9 +18,17 @@ export class ContextSearchComponent {
     selectedCompanion = 'Znajomi';
 
     days = [
-        {name: 'Dzień wolny', checked: false},
-        {name: 'Dzień roboczy', checked: false}
+        {name: 'Weekend'},
+        {name: 'Dzień roboczy'}
     ];
-    selectedDay = 'Dzień wolny';
+    selectedDay = 'Weekend';
+
+    places = [
+        {name: 'Dom'},
+        {name: 'Miejsce publiczne'},
+        {name: 'Dom znajomego'}
+    ];
+    selectedPlace = 'Dom';
+
 
 }
