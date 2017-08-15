@@ -1,10 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import * as $ from 'jquery/src/jquery.js';
-import 'jquery-ui/themes/base/core.css';
-import 'jquery-ui/themes/base/base.css';
-import 'jquery-ui/themes/base/selectable.css';
-import 'jquery-ui/ui/core.js';
-import 'jquery-ui/ui/widget.js';
+
 
 @Component ({
     selector: 'app-classic-search',
