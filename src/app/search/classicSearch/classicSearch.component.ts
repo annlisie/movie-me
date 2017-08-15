@@ -1,17 +1,10 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import * as $ from 'jquery/src/jquery.js';
-import 'jquery-ui/themes/base/core.css';
-import 'jquery-ui/themes/base/base.css';
-import 'jquery-ui/themes/base/selectable.css';
-import 'jquery-ui/ui/core.js';
-import 'jquery-ui/ui/widget.js';
 
 @Component ({
     selector: 'app-classic-search',
     templateUrl: './classicSearch.component.html',
     styleUrls: ['../search.component.scss', './classicSearch.component.scss']
 })
-
 
 export class ClassicSearchComponent implements OnInit{
 
@@ -27,8 +20,6 @@ export class ClassicSearchComponent implements OnInit{
 
     years: any[];
     yearsEnd: any[];
-
-    // range:Array<number> = [1,2,3,4,5];
 
     @Input() value:number;
     @Output() public valueChange:EventEmitter<string> = new EventEmitter<String>();
@@ -53,7 +44,6 @@ export class ClassicSearchComponent implements OnInit{
 
     ngOnInit(){
         this.value = 0;
-       // $("#ex16b").slider({ min: 0, max: 10, value: [0, 10], focus: true });
     }
 
     get selectedGenres() {
