@@ -1,43 +1,61 @@
 <div class="container">
 
   <div class="input-group input-group-lg">
-    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-    <input #searchBox (keyup)="search(searchBox.value, 0)" type="text" class="form-control" placeholder="Szukaj..." aria-describedby="sizing-addon1">
+    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"
+                                                             aria-hidden="true"></span></span>
+    <input [ngModel]="searchValue" (ngModelChange)='changed($event)' type="text" class="form-control"
+           placeholder="Szukaj..."
+           aria-describedby="sizing-addon1">
   </div>
 
-  <div class="media" *ngFor="let movie of movies">
-    <div style="background-color: #e7e7e7;  border-radius: 0 0 25px 0;">
-      <div class="media-left media-top">
-        <a href="#">
-          <img style="width: 150px"
-               [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-          {{movie.polishTitle}}
-          <span class="label label-info pull-right">
+  <img class="center" src="/assets/Loading_icon.gif" *ngIf="loading">
+
+  <div style="margin-top: 10px" *ngIf="!loading">
+    <div class="media" *ngFor="let movie of movies">
+      <div style="background-color: #e7e7e7;  border-radius: 0 0 25px 0;">
+        <div class="media-left media-top">
+          <a href="#">
+            <img style="width: 150px"
+                 [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
+            {{movie.polishTitle}}
+            <span class="label label-info pull-right">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
           </span>
-        </h4>
-        <br/>
-        <b>Oryginalny tytuł:</b> {{movie.originalTitle}} <br/>
-        <b>Rok produkcji:</b> {{movie.year}} <br/>
-        <b>Długość:</b> {{movie.length}} <br/>
-        <br/>
-        {{movie.description}}
+          </h4>
+          <br/>
+          <b>Oryginalny tytuł:</b> {{movie.originalTitle}} <br/>
+          <b>Rok produkcji:</b> {{movie.year}} <br/>
+          <b>Długość:</b> {{movie.length}} <br/>
+          <br/>
+          {{movie.description}}
 
+        </div>
       </div>
     </div>
-  </div>
 
-  <nav aria-label="...">
-    <ul class="pagination">
-      <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-      <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-      ...
-    </ul>
-  </nav>
+
+    <nav style="text-align: center">
+      <ul class="pagination">
+        <li [ngClass]="{disabled: currentPage===0}" class="disabled">
+          <a (click)="changePage(0)" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let number of pagesNumber" [ngClass]="{active: number===currentPage}">
+          <a (click)="changePage(number)">{{number + 1}} </a>
+        </li>
+        <li [ngClass]="{disabled: currentPage===totalPages - 1}">
+          <a (click)="changePage(totalPages - 1)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <br/>
 </div>
