@@ -27,7 +27,7 @@ export class MovieCatalogComponent implements OnInit {
   constructor(private movieService: MovieService,
               private sanitizer: DomSanitizer) {
     this.searchValueChanged
-      .debounceTime(500) // wait 300ms after the last event before emitting last event
+      .debounceTime(500) // wait 500ms after the last event before emitting last event
       .distinctUntilChanged() // only emit if value is different from previous value
       .subscribe(searchValue => {
         this.searchValue = searchValue;
