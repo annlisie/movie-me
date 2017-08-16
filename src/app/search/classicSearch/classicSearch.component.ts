@@ -1,12 +1,10 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
-
 @Component ({
     selector: 'app-classic-search',
     templateUrl: './classicSearch.component.html',
-    styleUrls: ['./classicSearch.component.css']
+    styleUrls: ['../search.component.scss', './classicSearch.component.scss']
 })
-
 
 export class ClassicSearchComponent implements OnInit{
 
@@ -45,8 +43,7 @@ export class ClassicSearchComponent implements OnInit{
     selectedYearEnd = 2017;
 
     ngOnInit(){
-        this.value = 5;
-       // $("#ex16b").slider({ min: 0, max: 10, value: [0, 10], focus: true });
+        this.value = 0;
     }
 
     get selectedGenres() {

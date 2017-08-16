@@ -4,7 +4,7 @@ import {Headers, RequestOptions, Response, Http} from "@angular/http";
 @Component({
   selector: 'app-authentication-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['../authentication.component.scss']
 })
 export class LoginComponent implements OnInit {
 
