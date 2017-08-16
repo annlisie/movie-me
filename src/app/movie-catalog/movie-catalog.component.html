@@ -2,7 +2,7 @@
 
   <div class="input-group input-group-lg">
     <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-    <input type="text" class="form-control" placeholder="Szukaj..." aria-describedby="sizing-addon1">
+    <input #searchBox (keyup)="search(searchBox.value, 0)" type="text" class="form-control" placeholder="Szukaj..." aria-describedby="sizing-addon1">
   </div>
 
   <div class="media" *ngFor="let movie of movies">

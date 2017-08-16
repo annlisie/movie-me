@@ -21,7 +21,13 @@ export class MovieCatalogComponent implements OnInit {
   }
 
   loadMovies(page: number) {
-    this.movieService.getMovies(page).then(response => {
+    this.movieService.getAllMovies(page).then(response => {
+      this.movies = response.content;
+    });
+  }
+
+  search(title: string, page: number): void {
+    this.movieService.searchByTitle(title, page).then(response => {
       this.movies = response.content;
     });
   }

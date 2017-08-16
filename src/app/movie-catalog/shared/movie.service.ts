@@ -8,8 +8,17 @@ export class MovieService {
 
   constructor(private http: Http) { }
 
-  getMovies(page: number): Promise<MoviePage> {
+  getAllMovies(page: number): Promise<MoviePage> {
     return this.http.get('https://localhost:8443/movies?page=' + page)
+      .toPromise()
+      .then(response => {
+        return <MoviePage>response.json().data;
+      })
+      .catch(reason => console.log(reason));
+  }
+
+  searchByTitle(title: string, page: number): Promise<MoviePage> {
+    return this.http.get('https://localhost:8443/movies/find?title=' + title + '&page=' + page)
       .toPromise()
       .then(response => {
         return <MoviePage>response.json().data;
