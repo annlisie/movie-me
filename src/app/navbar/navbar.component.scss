@@ -1,0 +1,51 @@
+$primary-color: #990033;
+
+@font-face {
+  font-family: moviemeFont;
+  src: url(../../october_twilight.ttf);
+}
+
+.navbar {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-family: moviemeFont;
+  font-size: 25px;
+  &:hover{
+    color: $primary-color;
+  }
+}
+
+.navbar-nav {
+  @extend .navbar;
+  display: inline-block;
+  float: none;
+}
+
+.navbar-collapse {
+  @extend .navbar;
+  text-align: center;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.form-control {
+  @extend .btn;
+  &:focus {
+    border-color: #990033;
+    box-shadow: none;
+  }
+
+  li{
+    a {
+      &:hover{
+        color: $primary-color;
+      }
+    }
+  }
+}

@@ -4,6 +4,9 @@ import { HttpModule, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './authentication/registration/registration.component';
+import { LoginComponent } from "./authentication/login/login.component";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {HomeComponent} from "./home/home.component";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +16,11 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        LoginComponent,
+        NavbarComponent,
+        HomeComponent
+
       ],
       providers: [Http]
     }).compileComponents();

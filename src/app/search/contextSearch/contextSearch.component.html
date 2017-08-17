@@ -1,0 +1,26 @@
+<div class="container">
+    <h4>Wyszukiwanie kontekstowe</h4>
+    <div></div>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Towarzystwo:</label>
+        <select [(ngModel)]="selectedCompanion">
+            <option *ngFor="let companion of company" [ngValue]="companion.name">{{companion.name}}</option>
+        </select>
+    </div>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Rodzaj dnia: </label>
+        <select [(ngModel)]="selectedDay">
+            <option *ngFor="let day of days" [ngValue]="day.name">{{day.name}}</option>
+        </select>
+    </div>
+    <div class="col-md-12 col-lg-12 form-group">
+        <label>Miejsce: </label>
+        <select [(ngModel)]="selectedPlace">
+            <option *ngFor="let place of places" [ngValue]="place.name">{{place.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-block">Szukaj</button>
+    </div>
+</div>
+
