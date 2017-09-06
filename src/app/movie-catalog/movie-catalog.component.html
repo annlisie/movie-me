@@ -21,7 +21,7 @@
         </div>
         <div class="media-body">
           <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-            {{movie.polishTitle}}
+            <a routerLink="/movies/{{movie.id}}">{{movie.polishTitle}}</a>
             <span class="label label-info pull-right">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
           </span>

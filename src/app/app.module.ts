@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { ClassicSearchComponent } from './search/classicSearch/classicSearch.component';
 import { ContextSearchComponent } from './search/contextSearch/contextSearch.component';
 import { MovieCatalogComponent } from './movie-catalog/movie-catalog.component';
+import { SingleMovieComponent } from './movie-catalog/single-movie/single-movie.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'search/classic', component: ClassicSearchComponent},
   { path: 'search/context', component: ContextSearchComponent},
   { path: 'movies', component: MovieCatalogComponent},
+  { path: 'movies/:id', component: SingleMovieComponent},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -39,7 +41,8 @@ const routes: Routes = [
     SearchComponent,
     ClassicSearchComponent,
     ContextSearchComponent,
-    MovieCatalogComponent
+    MovieCatalogComponent,
+    SingleMovieComponent
   ],
   imports: [
     BrowserModule,
