@@ -13,7 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { ClassicSearchComponent } from './search/classicSearch/classicSearch.component';
 import { ContextSearchComponent } from './search/contextSearch/contextSearch.component';
-import { MovieCatalogComponent } from './movie-catalog/movie-catalog.component';
+import { MovieCatalogComponent } from './movie/movie-catalog/movie-catalog.component';
+import { MovieCatalogElementComponent } from './movie/movie-catalog/movie-catalog-element/movie-catalog-element.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,7 +41,9 @@ const routes: Routes = [
     SearchComponent,
     ClassicSearchComponent,
     ContextSearchComponent,
-    MovieCatalogComponent
+    MovieCatalogComponent,
+    MovieCatalogElementComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
