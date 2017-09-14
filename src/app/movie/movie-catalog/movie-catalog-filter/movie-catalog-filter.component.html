@@ -1,0 +1,33 @@
+<!--Active filters-->
+<div style="margin-bottom: 10px">
+  <div *ngFor="let key of objectKeys(filteringParams)" style="display: inline-block">
+    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm'">
+      <span class="tag label label-default">
+        <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
+        <a (click)="clearFilter(key)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+      </span>
+    </ng-container>
+  </div>
+</div>
+
+<!--Filters button-->
+<button type="button" class="btn btn-default" *ngFor="let filter of filters" (click)="setSelectedFilter(filter)"
+        style="margin-bottom: 10px; margin-right: 3px"
+        [ngClass]="{active: selectedFilter===filter}">
+  <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</button>
+
+<!--Filter form-->
+<form (submit)="updateFilters(selectedFilter)" class="form-inline" *ngIf="selectedFilter" style="margin-bottom: 10px">
+  <div class="form-group" *ngFor="let field of selectedFilter.fields">
+    <label [for]="field.label">{{field.label}}</label>
+    <input *ngIf="!field.allowedValues" [(ngModel)]="field.value" [type]="field.type" class="form-control"
+           [id]="field.label" [ngModelOptions]="{standalone: true}">
+    <select *ngIf="field.allowedValues" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"
+            class="form-control">
+      <option *ngFor="let val of field.allowedValues" [ngValue]="val">{{val}}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Aktualizuj</button>
+</form>

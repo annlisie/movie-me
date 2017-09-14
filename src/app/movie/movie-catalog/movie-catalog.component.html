@@ -1,5 +1,7 @@
 <div class="container">
 
+  <app-movie-catalog-filter [filteringParams]="filteringParams" (applyFilterEvent)="loadMovies()"></app-movie-catalog-filter>
+
   <div class="input-group input-group-lg">
     <span class="input-group-addon" id="sizing-addon1">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -8,6 +10,7 @@
            [ngModel]="searchValue"
            (ngModelChange)='changed($event)'>
   </div>
+
 
   <img class="center" src="/assets/Loading_icon.gif" *ngIf="loading">
 
