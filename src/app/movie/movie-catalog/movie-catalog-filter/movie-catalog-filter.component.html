@@ -17,6 +17,12 @@
   <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
+<button type="button" class="btn btn-default" (click)="setSelectedFilter(null)"
+        style="margin-bottom: 10px; margin-right: 3px"
+        [ngClass]="{active: selectedFilter===filter}">
+  <span class="glyphicon glyphicon-film" aria-hidden="true"></span>Gatunek
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</button>
 
 <!--Filter form-->
 <form (submit)="updateFilters(selectedFilter)" class="form-inline" *ngIf="selectedFilter" style="margin-bottom: 10px">

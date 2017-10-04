@@ -58,15 +58,15 @@ export class MovieCatalogFilterComponent implements OnInit {
     }
     console.log(JSON.stringify(this.filteringParams));
     this.selectedFilter = null;
-    this.callPartent();
+    this.callPartent_loadMovies();
   }
 
   clearFilter(key) {
     this.filteringParams[key] = null;
-    this.callPartent();
+    this.callPartent_loadMovies();
   }
 
-  private callPartent() {
+  private callPartent_loadMovies() {
     this.applyFilterEvent.next(this.filteringParams);
   }
 
