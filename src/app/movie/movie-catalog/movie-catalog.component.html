@@ -1,0 +1,30 @@
+<div class="container">
+
+  <app-movie-catalog-filter [filteringParams]="filteringParams" (applyFilterEvent)="loadMovies()"></app-movie-catalog-filter>
+
+  <div class="input-group input-group-lg">
+    <span class="input-group-addon" id="sizing-addon1">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    </span>
+    <input type="text" class="form-control" placeholder="Szukaj..." aria-describedby="sizing-addon1"
+           [ngModel]="searchValue"
+           (ngModelChange)='changed($event)'>
+  </div>
+
+
+  <img class="center" src="/assets/Loading_icon.gif" *ngIf="loading">
+
+  <div class="loadingIcon" *ngIf="!loading">
+
+    <app-movie-catalog-element *ngFor="let movie of movies" [movie]="movie"></app-movie-catalog-element>
+
+    <app-pagination
+      (goPage)="changePage($event)"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages">
+    </app-pagination>
+
+  </div>
+
+  <br/>
+</div>
