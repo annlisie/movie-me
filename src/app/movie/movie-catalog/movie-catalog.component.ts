@@ -10,7 +10,7 @@ import {MovieFilteringParams} from '../shared/movie-filtering-params.model';
 @Component({
   selector: 'app-movie-catalog',
   templateUrl: './movie-catalog.component.html',
-  styleUrls: ['./movie-catalog.component.css'],
+  styleUrls: ['./movie-catalog.component.scss'],
   providers: [MovieService]
 })
 export class MovieCatalogComponent implements OnInit {

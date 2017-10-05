@@ -6,7 +6,7 @@ import {FilterField} from "./model/filter-field.model";
 @Component({
   selector: 'app-movie-catalog-filter',
   templateUrl: './movie-catalog-filter.component.html',
-  styleUrls: ['./movie-catalog-filter.component.css']
+  styleUrls: ['./movie-catalog-filter.component.scss']
 })
 export class MovieCatalogFilterComponent implements OnInit {
 
@@ -58,15 +58,15 @@ export class MovieCatalogFilterComponent implements OnInit {
     }
     console.log(JSON.stringify(this.filteringParams));
     this.selectedFilter = null;
-    this.callPartent();
+    this.callParent();
   }
 
   clearFilter(key) {
     this.filteringParams[key] = null;
-    this.callPartent();
+    this.callParent();
   }
 
-  private callPartent() {
+  private callParent() {
     this.applyFilterEvent.next(this.filteringParams);
   }
 
