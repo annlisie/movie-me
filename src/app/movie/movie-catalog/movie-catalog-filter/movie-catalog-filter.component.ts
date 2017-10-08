@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {MovieFilteringParams} from "../../shared/movie-filtering-params.model";
 import {Filter} from "./model/filter.model";
 import {FilterField} from "./model/filter-field.model";
+import {Genre} from "./model/genre.model";
+import {MovieService} from "../../shared/movie.service";
 
 @Component({
   selector: 'app-movie-catalog-filter',
@@ -18,16 +20,21 @@ export class MovieCatalogFilterComponent implements OnInit {
   filters: Filter[];
   private selectedFilter: Filter;
 
-  constructor() {
+  private showGenreFilter = false;
+  private genres: Genre[];
+
+  constructor(private movieService: MovieService) {
   }
 
   ngOnInit() {
+    this.movieService.getRoles()
+      .then(response => this.genres = response);
     const ratingValues = this.generateArray(1, 10);
     const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
     this.filters =
       [
         Filter.create(
-          'Ocena (Filmweb)', 'glyphicon glyphicon-star', ratingValues,
+          'Ocena', 'glyphicon glyphicon-star', ratingValues,
           x => this.filteringParams.ratingStart = x,
           x => this.filteringParams.ratingEnd = x),
 
@@ -42,6 +49,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
   setSelectedFilter(filter: Filter) {
+    this.showGenreFilter = false;
     if (this.selectedFilter === filter) {
       this.selectedFilter = null;
     } else {
@@ -66,6 +74,11 @@ export class MovieCatalogFilterComponent implements OnInit {
     this.callPartent_loadMovies();
   }
 
+  showOrHideGenreFilter() {
+    this.selectedFilter = null
+    this.showGenreFilter = !this.showGenreFilter;
+  }
+
   private callPartent_loadMovies() {
     this.applyFilterEvent.next(this.filteringParams);
   }
@@ -77,4 +90,6 @@ export class MovieCatalogFilterComponent implements OnInit {
     }
     return foo;
   }
+
+
 }
