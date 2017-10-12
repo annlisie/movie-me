@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Headers, RequestOptions, Response, Http} from "@angular/http";
+import {Headers, RequestOptions, Response, Http} from '@angular/http';
+import {AuthenticationService} from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication-login',
@@ -9,13 +11,32 @@ import {Headers, RequestOptions, Response, Http} from "@angular/http";
 export class LoginComponent implements OnInit {
 
   model: any = {};
+  error = '';
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  clearError() {
+    this.error = '';
+  }
 
+  login(email: string, password: string) {
+    this.authenticationService.login(this.model.email, this.model.password)
+      .subscribe(
+        (data) => {
+          this.router.navigate(['/']);
+        }, // Reach here if res.status >= 200 && <= 299
+        (err) => {
+          const errorArray = JSON.parse(err._body).errors;
+          this.error = '';
+          for (let e of errorArray) {
+            this.error += e + '. ';
+          }
+        });
+  }
+/*
   login(email: string, password: string) {
 
     const url = 'https://localhost:8443/login';
@@ -28,7 +49,6 @@ export class LoginComponent implements OnInit {
       password: password
     };
 
-
     return this.http.post( url, data, options )
       .map((res: Response) => res.json())
       .subscribe(
@@ -37,7 +57,5 @@ export class LoginComponent implements OnInit {
         function() { alert("the subscription is completed")}
       );
   }
-
-
-
+  */
 }

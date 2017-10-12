@@ -1,21 +1,33 @@
-<div class="container">
-    <form (ngSubmit) = "f.valid && register(model.email, model.password, model.confirmPassword)" #f="ngForm" novalidate>
+<div *ngIf="!newEmail" class="container">
+    <form (ngSubmit) = "f.valid && validate(model.password, model.confirmPassword) && register(model.email, model.password, model.confirmPassword)" #f="ngForm" novalidate>
         <h3>Rejestracja</h3>
 
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" [(ngModel)]="model.email" #email="ngModel" autofocus required>
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Podaj e-mail</div>
+            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" [(ngModel)]="model.email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" (click)="clearError()" autofocus required>
+            <!--<div *ngIf="f.submitted && !email.valid" class="help-block">Podaj e-mail</div>-->
+          <div *ngIf="f.submitted && (!email.valid || !email.pristine)" class="help-block">
+            <div [hidden]="!email.hasError('required')">Podaj e-mail</div>
+            <div [hidden]="!email.hasError('pattern')">Niepoprawny format e-mail</div>
+          </div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" [(ngModel)]="model.password" #password="ngModel" required>
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Podaj hasło</div>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" [(ngModel)]="model.password" #password="ngModel" minlength="6" (click)="clearError()" required>
+            <!--<div *ngIf="f.submitted && !password.valid" class="help-block">Podaj hasło</div>-->
+          <div *ngIf="f.submitted && (!password.valid || !password.pristine)" class="help-block">
+            <div [hidden]="!password.hasError('required')">Podaj hasło</div>
+            <div [hidden]="!password.hasError('minlength')">Hasło jest za krótkie</div>
+          </div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmPassword.valid }">
-            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Powtórz hasło" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" required>
-            <div *ngIf="f.submitted && !confirmPassword.valid" class="help-block">Podaj hasło</div>
+        <div class="form-group"> <!-- [ngClass]="{ 'has-error': f.submitted && !confirmPassword.valid }"> -->
+            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Powtórz hasło" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" (click)="clearError()" required>
+            <div *ngIf="f.submitted && (!confirmPassword.valid || !confirmPassword.pristine)" class="help-block">
+              <div [hidden]="validate(model.password, model.confirmPassword)">Hasła nie są zgodne</div>
+            </div>
         </div>
         <div class="form-group">
             <button class="btn btn-block">Zarejestruj się</button>
         </div>
     </form>
+    <div *ngIf="error" class="alert alert-danger container">{{error}}</div>
 </div>
+<div *ngIf="newEmail" class="alert alert-info container">Utworzono konto dla {{ newEmail }}. <a routerLink="/login">Zaloguj się.</a></div>
