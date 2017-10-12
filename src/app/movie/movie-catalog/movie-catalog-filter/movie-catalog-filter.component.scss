@@ -1,0 +1,42 @@
+$tag-a-color: #bbb;
+$glyphicon-color: #fff;
+
+.tag {
+  font-size: 14px;
+  padding: .3em .4em .4em;
+  margin: 0 .1em;
+  a {
+    color: $tag-a-color;
+    cursor: pointer;
+    opacity: 0.6;
+    margin: 0 0 0 .3em;
+    &:hover {
+      opacity: 1.0
+    }
+    .glyphicon-white {
+      color: $glyphicon-color;
+      margin-bottom: 2px;
+    }
+  }
+  .remove {
+    vertical-align: bottom;
+    top: 0;
+  }
+}
+
+.activeFilters {
+  margin-bottom: 10px;
+}
+
+.filterButtons {
+  margin-bottom: 10px;
+  margin-right: 3px;
+}
+
+.filterForm {
+  margin-bottom: 10px;
+}
+
+.chosenFilters {
+  display: inline-block;
+}

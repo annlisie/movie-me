@@ -8,7 +8,7 @@ import {MovieService} from "../../shared/movie.service";
 @Component({
   selector: 'app-movie-catalog-filter',
   templateUrl: './movie-catalog-filter.component.html',
-  styleUrls: ['./movie-catalog-filter.component.css']
+  styleUrls: ['./movie-catalog-filter.component.scss']
 })
 export class MovieCatalogFilterComponent implements OnInit {
 
@@ -34,7 +34,7 @@ export class MovieCatalogFilterComponent implements OnInit {
     this.filters =
       [
         Filter.create(
-          'Ocena', 'glyphicon glyphicon-star', ratingValues,
+          'Ocena (Filmweb)', 'glyphicon glyphicon-star', ratingValues,
           x => this.filteringParams.ratingStart = x,
           x => this.filteringParams.ratingEnd = x),
 
@@ -90,6 +90,4 @@ export class MovieCatalogFilterComponent implements OnInit {
     }
     return foo;
   }
-
-
 }

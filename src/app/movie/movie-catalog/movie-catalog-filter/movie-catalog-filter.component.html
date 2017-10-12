@@ -1,6 +1,6 @@
 <!--Active filters-->
-<div style="margin-bottom: 10px">
-  <div *ngFor="let key of objectKeys(filteringParams)" style="display: inline-block">
+<div class="activeFilters">
+  <div class="chosenFilters" *ngFor="let key of objectKeys(filteringParams)">
     <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm'">
       <span class="tag label label-default">
         <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
@@ -11,23 +11,22 @@
 </div>
 
 <!--Filters button-->
-<button type="button" class="btn btn-default" *ngFor="let filter of filters" (click)="setSelectedFilter(filter)"
-        style="margin-bottom: 10px; margin-right: 3px"
+<button type="button" class="filterButtons btn btn-default" *ngFor="let filter of filters" (click)="setSelectedFilter(filter)"
         [ngClass]="{active: selectedFilter===filter}">
   <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
 <!--Genre Filter-->
-<button type="button" class="btn btn-default" (click)="showOrHideGenreFilter()"
+<button type="button" class="filterButtons btn btn-default" (click)="showOrHideGenreFilter()"
         style="margin-bottom: 10px; margin-right: 3px"
         [ngClass]="{active: showGenreFilter}">
   <span class="glyphicon glyphicon-film" aria-hidden="true"></span>Gatunek
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
-<!--Filters form-->
-<form (submit)="updateFilters(selectedFilter)" class="form-inline" *ngIf="selectedFilter" style="margin-bottom: 10px">
+<!--Filter form-->
+<form (submit)="updateFilters(selectedFilter)" class="filterForm form-inline" *ngIf="selectedFilter">
   <div class="form-group" *ngFor="let field of selectedFilter.fields">
     <label [for]="field.label">{{field.label}}</label>
     <input *ngIf="!field.allowedValues" [(ngModel)]="field.value" [type]="field.type" class="form-control"
