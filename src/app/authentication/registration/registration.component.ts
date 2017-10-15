@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Headers, RequestOptions, Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 
 @Component ({
     selector: 'app-authentication-registration',
@@ -23,8 +24,6 @@ export class RegistrationComponent implements OnInit {
 
     register(email: string, password: string) {
 
-        const url = 'https://localhost:8443/users';
-
         const headers = new Headers ({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers});
 
@@ -34,7 +33,7 @@ export class RegistrationComponent implements OnInit {
             password: password
         };
 
-        return this.http.post( url, data, options )
+        return this.http.post( environment.apiEndpoint + '/users', data, options )
             .map((res: Response) => res.json())
             .subscribe();
     }
