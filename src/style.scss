@@ -1,5 +1,28 @@
+/*
 var sass = require('node-sass');
 
 sass.render({
   file: style,
-}, function(err, result) { /*...*/ });
+}, function(err, result) { });
+*/
+html, body{
+  height: 100%;
+}
+body {
+  background: url("pexels-photo-109669.jpg") no-repeat top center fixed;
+  /*background: -moz-linear-gradient(-45deg, #f9c645 0%, #ba3baf 99%) no-repeat center center fixed;
+  background: -webkit-linear-gradient(-45deg, #f9c645 0%,#ba3baf 99%) no-repeat center center fixed;
+  background: linear-gradient(135deg, #f9c645 0%,#ba3baf 99%) no-repeat center center fixed;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c645', endColorstr='#ba3baf',GradientType=1 );
+  */
+}
+/*
+nav > .container {
+  background: none !important;
+  color: white !important;
+}
+*/
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+}

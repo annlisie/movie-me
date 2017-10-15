@@ -1,0 +1,48 @@
+<form class="navbar-form" (ngSubmit)="f.valid && rateMovie(model.day, model.location)" #f="ngForm" novalidate>
+  <h3>Formularz oceny</h3>
+  <div class="form-group">
+    <label>Twoja ocena: {{value}}</label>
+    <fieldset class="rate" id="rateStars">
+      <input type="radio" id="rating10" name="rating" value="10" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating10" title="10"></label>
+      <input type="radio" id="rating9" name="rating" value="9" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating9" title="9"></label>
+      <input type="radio" id="rating8" name="rating" value="8" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating8" title="8"></label>
+      <input type="radio" id="rating7" name="rating" value="7" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating7" title="7"></label>
+      <input type="radio" id="rating6" name="rating" value="6" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating6" title="6"></label>
+      <input type="radio" id="rating5" name="rating" value="5" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating5" title="5"></label>
+      <input type="radio" id="rating4" name="rating" value="4" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating4" title="4"></label>
+      <input type="radio" id="rating3" name="rating" value="3" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating3" title="3"></label>
+      <input type="radio" id="rating2" name="rating" value="2" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating2" title="2"></label>
+      <input type="radio" id="rating1" name="rating" value="1" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating1" title="1"></label>
+    </fieldset>
+  </div>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+    <label>Dzień</label>
+    <select class="form-control" name="day" [(ngModel)]="model.day" #day="ngModel">
+      <option *ngFor="let day of days" [value]="day.value">
+        {{day.display}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+    <label>Lokalizacja</label>
+    <select class="form-control" name="location" [(ngModel)]="model.location" #location="ngModel">
+      <option *ngFor="let location of locations" [value]="location.value">
+        {{location.display}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-block">Oceń film</button>
+  </div>
+</form>
+

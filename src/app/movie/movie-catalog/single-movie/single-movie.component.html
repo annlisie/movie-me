@@ -1,0 +1,25 @@
+<div class="container">
+    <div *ngIf="movie" class="row">
+      <div class="col-md-3 text-center">
+        <span class="float-md-left">
+          <img style="width: 250px"
+               [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
+        </span>
+      </div>
+      <div class="col-md-5 text-left">
+        <span class="float-md-left title">{{movie.polishTitle}}</span>
+        <span class="year">({{movie.year}})</span>
+        <br/>
+        <p class="rating">Ocena filmweb: <span class="label label-info">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
+          </span></p>
+        <p *ngIf="movie.originalTitle" class="float-md-left rating">Tytuł oryginalny: {{movie.originalTitle}}</p>
+        <p class="rating">Czas trwania: {{movie.length}}</p>
+        <br/>
+        <p class="description">{{movie.description}}</p>
+      </div>
+      <div class="col-md-4 text-left">
+          <app-rating-form></app-rating-form>
+      </div>
+    </div>
+  </div>

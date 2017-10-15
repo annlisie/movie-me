@@ -8,13 +8,13 @@
     </div>
     <div class="media-body">
       <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-        {{movie.polishTitle}}
+        <a routerLink="/movies/{{movie.id}}">{{movie.polishTitle}}</a>
         <span class="label label-info pull-right">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
           </span>
       </h4>
       <br/>
-      <b>Oryginalny tytuł:</b> {{movie.originalTitle}} <br/>
+      <b *ngIf="movie.originalTitle">Oryginalny tytuł:</b> {{movie.originalTitle}} <br/>
       <b>Rok produkcji:</b> {{movie.year}} <br/>
       <b>Długość:</b> {{movie.length}} <br/>
       <br/>
