@@ -14,7 +14,7 @@
 
   <img class="center" src="/assets/Loading_icon.gif" *ngIf="loading">
 
-  <div style="margin-top: 10px" *ngIf="!loading">
+  <div class="loadingIcon" *ngIf="!loading">
 
     <app-movie-catalog-element *ngFor="let movie of movies" [movie]="movie"></app-movie-catalog-element>
 
