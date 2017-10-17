@@ -1,0 +1,16 @@
+import {Component, Input} from '@angular/core';
+import {Movie} from '../../shared/movie.model';
+import {DomSanitizer} from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-movie-catalog-element',
+  templateUrl: './movie-catalog-element.component.html',
+  styleUrls: ['./movie-catalog-element.component.css']
+})
+export class MovieCatalogElementComponent {
+
+  @Input() movie: Movie;
+
+  constructor(private sanitizer: DomSanitizer) {
+  }
+}

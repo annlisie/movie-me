@@ -1,4 +1,3 @@
-import {SafeUrl} from '@angular/platform-browser';
 export class Movie {
   id: number;
   polishTitle: string;
