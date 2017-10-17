@@ -28,7 +28,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movieService.getRoles()
+    this.movieService.getGenres()
       .then(response => this.genres = response);
     const ratingValues = this.generateArray(1, 10);
     const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
