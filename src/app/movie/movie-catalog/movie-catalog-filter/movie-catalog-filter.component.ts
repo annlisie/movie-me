@@ -21,6 +21,8 @@ export class MovieCatalogFilterComponent implements OnInit {
   constructor() {
   }
 
+  sign = 'plus';
+
   ngOnInit() {
     const ratingValues = this.generateArray(1, 10);
     const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
