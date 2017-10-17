@@ -15,6 +15,8 @@ import {MovieCatalogComponent} from "./movie/movie-catalog/movie-catalog.compone
 import {MovieCatalogElementComponent} from "./movie/movie-catalog/movie-catalog-element/movie-catalog-element.component";
 import {PaginationComponent} from "./pagination/pagination.component";
 import {MovieCatalogFilterComponent} from "./movie/movie-catalog/movie-catalog-filter/movie-catalog-filter.component";
+import {AuthenticationService} from "./authentication/authentication.service";
+import {EventManager} from "./authentication/event.manager";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,7 +50,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthenticationService, EventManager],
   bootstrap: [AppComponent]
 })
 
