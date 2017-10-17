@@ -5,6 +5,15 @@ $primary-color: #990033;
   src: url(../../october_twilight.ttf);
 }
 
+.user_info{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.user_info:hover {
+  cursor: default;
+}
+
 .navbar {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
