@@ -11,6 +11,11 @@
       <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" [(ngModel)]="model.password" #password="ngModel" (click)="clearError()" required>
       <div *ngIf="f.submitted && !password.valid" class="help-block">Podaj hasło</div>
     </div>
+    <!--
+    <div class="password-reminder">
+      <a routerLink="/">Nie pamiętam hasła</a>
+    </div>
+    -->
     <button class="btn btn-block">Zaloguj się</button>
   </form>
   </div>

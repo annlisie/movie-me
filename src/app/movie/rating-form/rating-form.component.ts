@@ -11,13 +11,16 @@ export class RatingFormComponent implements OnInit {
   @Output() public valueChange: EventEmitter<string> = new EventEmitter<String>();
   model: any = {};
   public days = [
-    { value: 'workday', display: 'Dzień roboczy' },
-    { value: 'weekend', display: 'Dzień wolny' }
+    { value: 'Dzien pracujacy', display: 'Dzień pracujący' },
+    { value: 'Weekend', display: 'Weekend' },
+    { value: '', display: 'Brak' }
   ];
 
-  public locations = [
-    { value: 'home', display: 'Dom' },
-    { value: 'cinema', display: 'Kino' }
+  public companyTypes = [
+    { value: 'Samemu', display: 'Samemu' },
+    { value: 'Rodzina', display: 'Z rodziną' },
+    { value: 'Z partnerem', display: 'Z partnerem' },
+    { value: '', display: 'Brak' }
   ];
 
   public ratings: number[]= [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
@@ -30,7 +33,7 @@ export class RatingFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  rateMovie(day, location) {
-    console.log(day + ' ' + location + ' ' + this.value);
+  rateMovie(day, company) {
+    console.log(day + ' ' + company + ' ' + this.value);
   }
 }

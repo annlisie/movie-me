@@ -42,7 +42,6 @@ nav {
 }
 
 .navbar {
-
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -50,6 +49,10 @@ nav {
     a {
       color: black;
       &:hover {
+        color: $primary-color;
+        background-color: inherit;
+      }
+      &:active {
         color: $primary-color;
         background-color: inherit;
       }

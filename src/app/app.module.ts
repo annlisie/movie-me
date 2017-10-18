@@ -21,10 +21,12 @@ import {AuthenticationService} from "./authentication/authentication.service";
 import {EventManager} from "./authentication/event.manager";
 import {SingleMovieComponent} from "./movie/movie-catalog/single-movie/single-movie.component";
 import { RatingFormComponent } from './movie/rating-form/rating-form.component';
+import {ChangePasswordComponent} from "./authentication/change-password/change-password.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'home', component: HomeComponent},
   // { path: 'search', component: SearchComponent},
   { path: 'search/classic', component: ClassicSearchComponent},
@@ -52,7 +54,8 @@ const routes: Routes = [
     PaginationComponent,
     MovieCatalogFilterComponent,
     SingleMovieComponent,
-    RatingFormComponent
+    RatingFormComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

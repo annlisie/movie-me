@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventManager} from './../authentication/event.manager';
 import {AuthenticationService} from './../authentication/authentication.service'
+import {sha1} from "@angular/compiler/src/i18n/digest";
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,11 @@ export class NavbarComponent implements OnInit {
         }
       }
     });
+    if (localStorage.getItem('currentUser') != null) {
+      this.showNavBar = true;
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      this.userEmail = user.email;
+    }
   }
 
   ngOnInit() {
@@ -32,5 +38,4 @@ export class NavbarComponent implements OnInit {
     console.log('Jestem tutaj!');
     this.authenticationService.logout();
   }
-
 }

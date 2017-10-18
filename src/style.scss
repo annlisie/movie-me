@@ -10,6 +10,8 @@ html, body{
 }
 body {
   background: url("pexels-photo-109669.jpg") no-repeat top center fixed;
+  background-size: cover;
+  position: relative;
   /*background: -moz-linear-gradient(-45deg, #f9c645 0%, #ba3baf 99%) no-repeat center center fixed;
   background: -webkit-linear-gradient(-45deg, #f9c645 0%,#ba3baf 99%) no-repeat center center fixed;
   background: linear-gradient(135deg, #f9c645 0%,#ba3baf 99%) no-repeat center center fixed;
