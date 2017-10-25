@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {EventManager} from './event.manager';
 import {User} from './user.model';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
@@ -16,14 +17,14 @@ export class AuthenticationService {
   register(email: string, password: string, confirmPassword: string): Observable<Response> {
     const headers = new Headers ({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers});
-    return this.http.post('https://localhost:8443/users', JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }), options)
+    return this.http.post(environment.apiEndpoint + '/users', JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }), options)
       .map((response: Response) => {
         return response.json();
       });
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post('https://localhost:8443/login', JSON.stringify({ email: email, password: password }))
+    return this.http.post(environment.apiEndpoint + '/login', JSON.stringify({ email: email, password: password }))
       .map((response: Response) => {
         console.log(response.headers);
         if (response.json().status === 'OK') {
