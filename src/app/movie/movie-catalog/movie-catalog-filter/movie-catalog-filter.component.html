@@ -29,9 +29,8 @@
 
 <!--Genre Filter-->
 <button type="button" class="filterButtons btn btn-default" (click)="showOrHideGenreFilter()"
-        style="margin-bottom: 10px; margin-right: 3px"
         [ngClass]="{active: showGenreFilter}">
-  <span class="glyphicon glyphicon-film" aria-hidden="true"></span>Gatunek
+  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
@@ -51,14 +50,15 @@
 
 
 <!--Genres filter form-->
-<div class="row">
+<div>
   <form (submit)="updateGenresFilter()" *ngIf="showGenreFilter">
-    <div>
-      <label class="col-md-3 checkbox-inline" *ngFor="let genre of genres">
+    <div class="row">
+      <label class="col-md-2 col-sm-4 col-xs-6 checkbox-inline" *ngFor="let genre of genres">
         <input [(ngModel)]="genre.checkboxActive" type="checkbox" [name]="genre.name">
         {{genre.name}}
       </label>
-
+    </div>
+    <div class="row col-md-offset-11" style="margin-bottom: 10px">
       <button type="submit" class="btn btn-default">Aktualizuj</button>
     </div>
   </form>
