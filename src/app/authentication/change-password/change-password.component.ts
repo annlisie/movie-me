@@ -12,21 +12,30 @@ export class ChangePasswordComponent implements OnInit {
 
   model: any = {};
   error = '';
+  success: boolean;
 
-  constructor(public http: Http, private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(public http: Http, private authenticationService: AuthenticationService, private router: Router) {
+    if (localStorage.getItem('currentUser') == null) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
   }
 
   clearError() {
     this.error = '';
+    this.success = false;
   }
 
   changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string) {
+    if (localStorage.getItem('currentUser') == null) {
+      this.router.navigate(['/login']);
+    }
     this.authenticationService.changePassword(oldPassword, newPassword, confirmNewPassword)
       .subscribe(
         (data) => {
-          console.log(data);
+          this.success = true;
         }, // Reach here if res.status >= 200 && <= 299
         (err) => {
           const errorArray = JSON.parse(err._body).errors;
