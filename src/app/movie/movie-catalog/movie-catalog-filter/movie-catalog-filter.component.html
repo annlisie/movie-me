@@ -1,19 +1,36 @@
 <!--Active filters-->
+
 <div class="activeFilters">
   <div class="chosenFilters" *ngFor="let key of objectKeys(filteringParams)">
-    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm'">
+    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != 'genresIds'">
       <span class="tag label label-default">
         <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
         <a (click)="clearFilter(key)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
       </span>
     </ng-container>
   </div>
+
+  <!-- Selected genres -->
+  <div class="chosenFilters" *ngFor="let selectedGenre of selectedGenres; let i = index">
+      <span class="tag label label-default">
+        <span>{{selectedGenre.name}}</span>
+        <a (click)="clearGenre(i)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+      </span>
+  </div>
 </div>
 
 <!--Filters button-->
-<button type="button" class="filterButtons btn btn-default" *ngFor="let filter of filters" (click)="setSelectedFilter(filter)"
+<button type="button" class="filterButtons btn btn-default" *ngFor="let filter of filters"
+        (click)="setSelectedFilter(filter)"
         [ngClass]="{active: selectedFilter===filter}">
   <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</button>
+
+<!--Genre Filter-->
+<button type="button" class="filterButtons btn btn-default" (click)="showOrHideGenreFilter()"
+        [ngClass]="{active: showGenreFilter}">
+  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
@@ -30,3 +47,19 @@
   </div>
   <button type="submit" class="btn btn-default">Aktualizuj</button>
 </form>
+
+
+<!--Genres filter form-->
+<div>
+  <form (submit)="updateGenresFilter()" *ngIf="showGenreFilter">
+    <div class="row">
+      <label class="col-md-2 col-sm-4 col-xs-6 checkbox-inline" *ngFor="let genre of genres">
+        <input [(ngModel)]="genre.checkboxActive" type="checkbox" [name]="genre.name">
+        {{genre.name}}
+      </label>
+    </div>
+    <div class="row col-md-offset-11" style="margin-bottom: 10px">
+      <button type="submit" class="btn btn-default">Aktualizuj</button>
+    </div>
+  </form>
+</div>

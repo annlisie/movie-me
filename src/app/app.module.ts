@@ -4,14 +4,12 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {RouterModule, Routes} from "@angular/router";
 
-
 import {AppComponent} from "./app.component";
 import {RegistrationComponent} from "./authentication/registration/registration.component";
 import {LoginComponent} from "./authentication/login/login.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
 import {SearchComponent} from "./search/search.component";
-import {ClassicSearchComponent} from "./search/classicSearch/classicSearch.component";
 import {ContextSearchComponent} from "./search/contextSearch/contextSearch.component";
 import {MovieCatalogComponent} from "./movie/movie-catalog/movie-catalog.component";
 import {MovieCatalogElementComponent} from "./movie/movie-catalog/movie-catalog-element/movie-catalog-element.component";
@@ -28,9 +26,7 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'home', component: HomeComponent},
-  // { path: 'search', component: SearchComponent},
-  { path: 'search/classic', component: ClassicSearchComponent},
-  { path: 'search/context', component: ContextSearchComponent},
+  { path: 'recommendations', component: ContextSearchComponent},
   { path: 'movies', component: MovieCatalogComponent},
   { path: 'movies/:id', component: SingleMovieComponent},
   { path: '',
@@ -47,7 +43,6 @@ const routes: Routes = [
     NavbarComponent,
     HomeComponent,
     SearchComponent,
-    ClassicSearchComponent,
     ContextSearchComponent,
     MovieCatalogComponent,
     MovieCatalogElementComponent,

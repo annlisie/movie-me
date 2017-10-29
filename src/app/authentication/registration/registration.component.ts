@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Headers, RequestOptions, Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 import {AuthenticationService} from '../authentication.service';
 import { Router } from '@angular/router';
 import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
@@ -51,5 +52,4 @@ export class RegistrationComponent implements OnInit {
              }
           });
     }
-
 }

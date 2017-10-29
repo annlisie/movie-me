@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: 'https://localhost:8443'
+  // apiEndpoint: 'http://34.223.201.228:8080/movieme'
 };

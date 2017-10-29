@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {MovieFilteringParams} from "../../shared/movie-filtering-params.model";
-import {Filter} from "./model/filter.model";
-import {FilterField} from "./model/filter-field.model";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MovieFilteringParams} from '../../shared/movie-filtering-params.model';
+import {Filter} from './model/filter.model';
+import {FilterField} from './model/filter-field.model';
+import {Genre} from './model/genre.model';
+import {MovieService} from '../../shared/movie.service';
 
 @Component({
   selector: 'app-movie-catalog-filter',
@@ -13,15 +15,21 @@ export class MovieCatalogFilterComponent implements OnInit {
   @Input() filteringParams: MovieFilteringParams;
   @Output() applyFilterEvent = new EventEmitter<MovieFilteringParams>();
 
-  private objectKeys = Object.keys;
+  private objectKeys = Object.keys; // used in template
 
   filters: Filter[];
   private selectedFilter: Filter;
 
-  constructor() {
+  private showGenreFilter = false;
+  private genres: Genre[];
+  private selectedGenres: Genre[] = [];
+
+  constructor(private movieService: MovieService) {
   }
 
   ngOnInit() {
+    this.movieService.getGenres()
+      .then(response => this.genres = response);
     const ratingValues = this.generateArray(1, 10);
     const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
     this.filters =
@@ -42,6 +50,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
   setSelectedFilter(filter: Filter) {
+    this.showGenreFilter = false;
     if (this.selectedFilter === filter) {
       this.selectedFilter = null;
     } else {
@@ -56,18 +65,62 @@ export class MovieCatalogFilterComponent implements OnInit {
         field.action(field.value);
       }
     }
-    console.log(JSON.stringify(this.filteringParams));
     this.selectedFilter = null;
-    this.callParent();
+    this.callPartent_loadMovies();
+  }
+
+  updateGenresFilter() {
+    this.collectSelectedGenres();
+    const idsOfSelectedGenres = this.getIdsOfSelectedGenres();
+
+    if (idsOfSelectedGenres.length > 0) {
+      this.filteringParams.genresIds = idsOfSelectedGenres;
+    } else {
+      this.filteringParams.genresIds = null;
+    }
+
+    this.showGenreFilter = false;
+    this.callPartent_loadMovies();
   }
 
   clearFilter(key) {
     this.filteringParams[key] = null;
-    this.callParent();
+    this.callPartent_loadMovies();
   }
 
-  private callParent() {
+  clearGenre(index: number) {
+    this.selectedGenres[index].checkboxActive = false;
+    this.updateGenresFilter();
+  }
+
+  showOrHideGenreFilter() {
+    this.selectedFilter = null;
+    this.showGenreFilter = !this.showGenreFilter;
+  }
+
+  private callPartent_loadMovies() {
     this.applyFilterEvent.next(this.filteringParams);
+  }
+
+  private collectSelectedGenres() {
+    this.selectedGenres = [];
+    for (let i = 0; i < this.genres.length; i++) {
+      const genre = this.genres[i];
+      if (genre.checkboxActive) {
+        this.selectedGenres.push(genre);
+      }
+    }
+  }
+
+  private getIdsOfSelectedGenres(): number[] {
+    const selectedGenresIds: number[] = [];
+    for (let i = 0; i < this.selectedGenres.length; i++) {
+      const selectedGenre = this.selectedGenres[i];
+      if (selectedGenre.checkboxActive) {
+        selectedGenresIds.push(selectedGenre.id);
+      }
+    }
+    return selectedGenresIds;
   }
 
   private generateArray(start: number, end: number): number[] {

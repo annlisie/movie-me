@@ -37,16 +37,17 @@ export class MovieCatalogComponent implements OnInit {
       .subscribe(searchValue => {
         this.searchValue = searchValue;
         this.filteringParams.searchedTerm = searchValue;
-        this.loadMovies();
+        this.loadMovies(0);
       });
   }
 
   ngOnInit() {
-    this.loadMovies();
+    this.loadMovies(0);
   }
 
-  loadMovies() {
+  loadMovies(page: number) {
     this.loading = true;
+    this.pageableParams.page = page;
     this.movieService.getMovies(this.pageableParams, this.filteringParams)
       .then(response => this.handleResponse(response));
   }
@@ -60,8 +61,7 @@ export class MovieCatalogComponent implements OnInit {
   }
 
   changePage(page: number) {
-    this.pageableParams.page = page;
-    this.loadMovies();
+    this.loadMovies(page);
   }
 
   changed(text: string) {
