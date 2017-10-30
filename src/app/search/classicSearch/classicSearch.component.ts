@@ -20,8 +20,6 @@ export class ClassicSearchComponent implements OnInit{
 
     years: any[];
     yearsEnd: any[];
-    selectedYear = 2016;
-    selectedYearEnd = 2017;
 
     @Input() value:number;
     @Output() public valueChange:EventEmitter<string> = new EventEmitter<String>();
@@ -41,6 +39,8 @@ export class ClassicSearchComponent implements OnInit{
             this.yearsEnd[2022 - i] = i;
         }
     }
+    selectedYear = 2016;
+    selectedYearEnd = 2017;
 
     ngOnInit(){
         this.value = 0;
