@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventManager} from './../authentication/event.manager';
 import {AuthenticationService} from './../authentication/authentication.service'
-import {sha1} from "@angular/compiler/src/i18n/digest";
 
 @Component({
   selector: 'app-navbar',
@@ -37,4 +36,5 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
   }
+
 }

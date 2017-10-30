@@ -9,7 +9,6 @@ import {Genre} from '../movie-catalog/movie-catalog-filter/model/genre.model';
 import 'rxjs/add/operator/catch';
 import {environment} from '../../../environments/environment';
 
-
 @Injectable()
 export class MovieService {
 
@@ -41,8 +40,8 @@ export class MovieService {
   }
 
   getSingleMovie(id: number): Promise<Movie> {
-      return this.http.get('https://localhost:8443/movies/' + id)
-          .toPromise()
+      return this.http.get(environment.apiEndpoint + '/movies/' + id)
+        .toPromise()
         .then(response => {
             return <Movie>response.json().data;
           })

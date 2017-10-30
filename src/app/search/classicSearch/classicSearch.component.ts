@@ -6,7 +6,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
     styleUrls: ['../search.component.scss', './classicSearch.component.scss']
 })
 
-export class ClassicSearchComponent implements OnInit {
+export class ClassicSearchComponent implements OnInit{
 
     genres = [
         {name: 'GatunekA', checked: false},
@@ -23,26 +23,26 @@ export class ClassicSearchComponent implements OnInit {
     selectedYear = 2016;
     selectedYearEnd = 2017;
 
-    @Input() value: number;
-    @Output() public valueChange: EventEmitter<string> = new EventEmitter<String>();
+    @Input() value:number;
+    @Output() public valueChange:EventEmitter<string> = new EventEmitter<String>();
 
     updateRating(value) {
         this.valueChange.emit(value);
     }
 
-    constructor() {
+    constructor(){
         this.years = [];
-        for (let i = 2022; i >= 1950; i--){
+        for(let i = 2022; i >= 1950; i--){
             this.years[2022 - i] = i;
         }
 
         this.yearsEnd = [];
-        for (let i = 2022; i >= 1950; i--){
+        for(let i = 2022; i >= 1950; i--){
             this.yearsEnd[2022 - i] = i;
         }
     }
 
-    ngOnInit() {
+    ngOnInit(){
         this.value = 0;
     }
 
