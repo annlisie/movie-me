@@ -10,8 +10,11 @@
         <span class="float-md-left title">{{movie.polishTitle}}</span>
         <span class="year">({{movie.year}})</span>
         <br/>
+        <p *ngIf="movie.customRating > 0" class="rating">Nasza ocena: <span class="label label-info">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.customRating}}
+          </span></p>
         <p class="rating">Ocena filmweb: <span class="label label-info">
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
           </span></p>
         <p *ngIf="movie.originalTitle" class="float-md-left rating">Tytuł oryginalny: {{movie.originalTitle}}</p>
         <p class="rating">Czas trwania: {{movie.length}}</p>
