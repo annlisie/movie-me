@@ -8,12 +8,11 @@ import {Movie} from './movie.model';
 import {Genre} from '../movie-catalog/movie-catalog-filter/model/genre.model';
 import 'rxjs/add/operator/catch';
 import {environment} from '../../../environments/environment';
+import {ContextParameter} from '../movie-catalog/rating-form/model/context-parameter.model';
 
 
 @Injectable()
 export class MovieService {
-
-
   constructor(private http: Http) { }
 
   getMovies(pageableParams: MoviePageableParams, filteringParams: MovieFilteringParams): Promise<MoviePage> {
@@ -41,12 +40,20 @@ export class MovieService {
   }
 
   getSingleMovie(id: number): Promise<Movie> {
-      return this.http.get('https://localhost:8443/movies/' + id)
+      return this.http.get(environment.apiEndpoint + '/movies/' + id)
           .toPromise()
         .then(response => {
             return <Movie>response.json().data;
           })
         .catch(reason => console.log(reason));
-    }
+  }
 
+  getContextParameters(): Promise<ContextParameter[]> {
+    return this.http.get(environment.apiEndpoint + '/ratings/contextParams')
+      .toPromise()
+      .then(response => {
+        return <ContextParameter[]>response.json().data;
+      })
+      .catch(reason => console.log(reason));
+  }
 }

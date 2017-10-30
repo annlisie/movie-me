@@ -19,7 +19,7 @@
         <p class="description">{{movie.description}}</p>
       </div>
       <div class="col-md-4 text-left">
-          <app-rating-form></app-rating-form>
+          <app-rating-form [movieId]="movie.id"></app-rating-form>
       </div>
     </div>
   </div>

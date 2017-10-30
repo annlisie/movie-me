@@ -18,8 +18,9 @@ import {MovieCatalogFilterComponent} from "./movie/movie-catalog/movie-catalog-f
 import {AuthenticationService} from "./authentication/authentication.service";
 import {EventManager} from "./authentication/event.manager";
 import {SingleMovieComponent} from "./movie/movie-catalog/single-movie/single-movie.component";
-import { RatingFormComponent } from './movie/rating-form/rating-form.component';
+import { RatingFormComponent } from './movie/movie-catalog/rating-form/rating-form.component';
 import {ChangePasswordComponent} from "./authentication/change-password/change-password.component";
+import {UserService} from "./user/user.service";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,7 +59,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthenticationService, EventManager],
+  providers: [AuthenticationService, EventManager, UserService],
   bootstrap: [AppComponent]
 })
 
