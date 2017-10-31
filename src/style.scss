@@ -1,5 +1,19 @@
+/*
 var sass = require('node-sass');
 
 sass.render({
   file: style,
-}, function(err, result) { /*...*/ });
+}, function(err, result) { });
+*/
+html, body{
+  height: 100%;
+}
+body {
+  background: url("pexels-photo-109669.jpg") no-repeat top center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+}

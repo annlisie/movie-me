@@ -5,19 +5,59 @@ $primary-color: #990033;
   src: url(../../october_twilight.ttf);
 }
 
+.logo {
+  color: floralwhite;
+  font-family: moviemeFont;
+  font-size: 3.5em;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+  &:active {
+    border-style: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  p {
+    padding-top: 10px;
+  }
+}
+
 .user_info{
   padding-top: 15px;
   padding-bottom: 15px;
+  &:hover {
+    cursor: default;
+  }
+}
+.container {
+  background: none !important;
 }
 
-.user_info:hover {
-  cursor: default;
+nav {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .navbar {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  li {
+    a {
+      color: black;
+      &:hover {
+        color: $primary-color;
+        background-color: inherit;
+      }
+      &:active {
+        color: $primary-color;
+        background-color: inherit;
+      }
+    }
+  }
 }
 
 .navbar-brand {
@@ -46,7 +86,7 @@ $primary-color: #990033;
 .form-control {
   @extend .btn;
   &:focus {
-    border-color: #990033;
+    border-color: $primary-color;
     box-shadow: none;
   }
 

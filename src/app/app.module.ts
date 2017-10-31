@@ -17,13 +17,18 @@ import {PaginationComponent} from "./pagination/pagination.component";
 import {MovieCatalogFilterComponent} from "./movie/movie-catalog/movie-catalog-filter/movie-catalog-filter.component";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {EventManager} from "./authentication/event.manager";
+import {SingleMovieComponent} from "./movie/movie-catalog/single-movie/single-movie.component";
+import {RatingFormComponent} from "./movie/rating-form/rating-form.component";
+import {ChangePasswordComponent} from "./authentication/change-password/change-password.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'home', component: HomeComponent},
   { path: 'recommendations', component: ContextSearchComponent},
   { path: 'movies', component: MovieCatalogComponent},
+  { path: 'movies/:id', component: SingleMovieComponent},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -42,7 +47,10 @@ const routes: Routes = [
     MovieCatalogComponent,
     MovieCatalogElementComponent,
     PaginationComponent,
-    MovieCatalogFilterComponent
+    MovieCatalogFilterComponent,
+    SingleMovieComponent,
+    RatingFormComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+$stars-color: #990033;
+
+fieldset {
+  margin-top: -10px;
+}
+
+.rate {
+  display: inline-block;
+  border: 0;
+  font-size: 30px;
+  color: #d3d3d3;
+  > {
+    input {
+      display: none;
+    }
+    label {
+      float: right;
+      &:before {
+        display: inline-block;
+        font-size: 30px;
+        margin: 0;
+        cursor: pointer;
+        content: "\2605 "; /* full star */
+      }
+    }
+  }
+}
+
+/* Click + hover color */
+input:checked ~ label {
+  color: $stars-color;
+}
+
+label:hover {
+  color: $stars-color;
+  ~ label {
+    color: $stars-color;
+  }
+}
+
+input:checked {
+  color: $stars-color;
+  + label:hover {
+    ~ label:hover {
+      color: $stars-color;
+    }
+  }
+  ~ label {
+    color: $stars-color;
+  }
+}
+
+label:hover ~ input:checked ~ label {
+  color: $stars-color;
+}

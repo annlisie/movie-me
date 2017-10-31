@@ -5,13 +5,12 @@ import 'rxjs/add/operator/map';
 import {EventManager} from './event.manager';
 import {User} from './user.model';
 import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-  public token: string;
-  constructor(private http: Http, private eventManager: EventManager) {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+
+  constructor(private http: Http, private eventManager: EventManager, private router: Router) {
   }
 
   register(email: string, password: string, confirmPassword: string): Observable<Response> {
@@ -26,7 +25,6 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<boolean> {
     return this.http.post(environment.apiEndpoint + '/login', JSON.stringify({ email: email, password: password }))
       .map((response: Response) => {
-        console.log(response.headers);
         if (response.json().status === 'OK') {
           const token = response.headers.get('authorization');
           const userId = response.json().data.id;
@@ -37,6 +35,25 @@ export class AuthenticationService {
         } else {
           return false;
         }
+      });
+  }
+
+  changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(currentUser);
+    const headers = new Headers({
+      'Authorization': currentUser.token,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    const options = new RequestOptions({headers: headers});
+    return this.http.put(environment.apiEndpoint + '/users/' + currentUser.id.toString(), JSON.stringify({
+      oldPassword: oldPassword.toString(),
+      newPassword: newPassword.toString(),
+      confirmNewPassword: confirmNewPassword.toString()
+    }), options)
+      .map((response: Response) => {
+        response.json();
       });
   }
 

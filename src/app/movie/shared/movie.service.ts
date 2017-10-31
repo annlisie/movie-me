@@ -4,6 +4,7 @@ import {MoviePage} from './movie-page.model';
 import 'rxjs/add/operator/toPromise';
 import {MoviePageableParams} from './movie-pageable-params.model';
 import {MovieFilteringParams} from './movie-filtering-params.model';
+import {Movie} from './movie.model';
 import {Genre} from '../movie-catalog/movie-catalog-filter/model/genre.model';
 import 'rxjs/add/operator/catch';
 import {environment} from '../../../environments/environment';
@@ -37,5 +38,14 @@ export class MovieService {
       })
       .catch(reason => console.log(reason));
   }
+
+  getSingleMovie(id: number): Promise<Movie> {
+      return this.http.get(environment.apiEndpoint + '/movies/' + id)
+        .toPromise()
+        .then(response => {
+            return <Movie>response.json().data;
+          })
+        .catch(reason => console.log(reason));
+    }
 
 }
