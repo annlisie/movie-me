@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
+import {Http, RequestOptions, Headers} from '@angular/http';
 import {MoviePage} from './movie-page.model';
 import 'rxjs/add/operator/toPromise';
 import {MoviePageableParams} from './movie-pageable-params.model';
@@ -40,7 +40,17 @@ export class MovieService {
   }
 
   getSingleMovie(id: number): Promise<Movie> {
-      return this.http.get(environment.apiEndpoint + '/movies/' + id)
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let options;
+      if (currentUser != null) {
+        const headers = new Headers({
+          'Authorization': currentUser.token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        });
+        options = new RequestOptions({headers: headers});
+      }
+      return this.http.get(environment.apiEndpoint + '/movies/' + id, options)
           .toPromise()
         .then(response => {
             return <Movie>response.json().data;

@@ -38,4 +38,6 @@
     <button type="submit" class="btn btn-block">Oceń film</button>
   </div>
 </form>
+<div *ngIf="success" class="alert alert-success">Pomyślnie dodano ocenę!</div>
+<div *ngIf="!success && error" class="alert alert-danger">{{error}}</div>
 

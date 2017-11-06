@@ -13,16 +13,18 @@ export class RatingFormComponent implements OnInit {
 
   @Input() value: number;
   @Input() movieId: number;
+  @Input() contextParams: ContextParameter[];
   @Output() public valueChange: EventEmitter<string> = new EventEmitter<String>();
-  contextParams: ContextParameter[];
+
   model: any;
+  success: boolean;
+  error: string;
 
   constructor(private movieService: MovieService, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.movieService.getContextParameters()
-      .then(response => this.contextParams = response);
+    this.error = '';
   }
 
   updateRating(value) {
@@ -30,17 +32,22 @@ export class RatingFormComponent implements OnInit {
   }
 
   rateMovie(f: NgForm) {
+    this.success = false;
+    this.error = '';
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser == null) {
-      alert('Aby oceniać musisz być zalogowany!');
+      this.error = 'Aby móc oceniać musisz być zalogowany!';
     } else {
       this.userService.rateMovie(f.value, this.movieId)
         .subscribe(
           (data) => {
-            console.log(data);
+            this.success = true;
           }, // Reach here if res.status >= 200 && <= 299
           (err) => {
-            console.log(err);
+            const errorArray = JSON.parse(err._body).errors;
+            for (let e of errorArray) {
+              this.error += e + '. ';
+            }
           });
     }
   }

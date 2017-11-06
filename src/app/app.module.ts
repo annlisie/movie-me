@@ -21,6 +21,7 @@ import {SingleMovieComponent} from "./movie/movie-catalog/single-movie/single-mo
 import { RatingFormComponent } from './movie/movie-catalog/rating-form/rating-form.component';
 import {ChangePasswordComponent} from "./authentication/change-password/change-password.component";
 import {UserService} from "./user/user.service";
+import {RatingHistoryComponent} from "./movie/movie-catalog/rating-history/rating-history.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -51,7 +52,8 @@ const routes: Routes = [
     MovieCatalogFilterComponent,
     SingleMovieComponent,
     RatingFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RatingHistoryComponent
   ],
   imports: [
     BrowserModule,

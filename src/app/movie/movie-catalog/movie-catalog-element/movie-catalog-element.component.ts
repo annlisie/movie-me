@@ -5,7 +5,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-movie-catalog-element',
   templateUrl: './movie-catalog-element.component.html',
-  styleUrls: ['./movie-catalog-element.component.css']
+  styleUrls: ['./movie-catalog-element.component.scss']
 })
 export class MovieCatalogElementComponent {
 
