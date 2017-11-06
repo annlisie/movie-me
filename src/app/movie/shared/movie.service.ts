@@ -10,7 +10,6 @@ import 'rxjs/add/operator/catch';
 import {environment} from '../../../environments/environment';
 import {ContextParameter} from '../movie-catalog/rating-form/model/context-parameter.model';
 
-
 @Injectable()
 export class MovieService {
   constructor(private http: Http) { }
@@ -51,7 +50,7 @@ export class MovieService {
         options = new RequestOptions({headers: headers});
       }
       return this.http.get(environment.apiEndpoint + '/movies/' + id, options)
-          .toPromise()
+        .toPromise()
         .then(response => {
             return <Movie>response.json().data;
           })
