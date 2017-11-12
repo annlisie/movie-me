@@ -26,7 +26,7 @@ export class UserService {
       });
   }
 
-  getRecommendations(f: NgForm): Observable<any> {
+  getRecommendations(f: any): Observable<any> {
     let parameters = '';
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const headers = new Headers({
@@ -35,9 +35,9 @@ export class UserService {
       'Accept': 'application/json'
     });
     const options = new RequestOptions({headers: headers});
-    const keyNames = Object.keys(f.value);
+    const keyNames = Object.keys(f);
     for (const i of keyNames) {
-      parameters += i + '=' + f.value[i] + '&';
+      parameters += i + '=' + f[i] + '&';
     }
     return this.http.get(environment.apiEndpoint + '/recommendations?' + parameters, options)
       .map((response: Response) => {

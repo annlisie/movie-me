@@ -9,8 +9,7 @@ import {RegistrationComponent} from "./authentication/registration/registration.
 import {LoginComponent} from "./authentication/login/login.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
-import {RecommendationsComponent} from "./recommendations/recommendations.compnent";
-import {ContextSearchComponent} from "./recommendations/contextSearch/contextSearch.component";
+import {RecommendationsComponent} from "./recommendations/recommendations.component";
 import {MovieCatalogComponent} from "./movie/movie-catalog/movie-catalog.component";
 import {MovieCatalogElementComponent} from "./movie/movie-catalog/movie-catalog-element/movie-catalog-element.component";
 import {PaginationComponent} from "./pagination/pagination.component";
@@ -29,7 +28,8 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'home', component: HomeComponent},
-  { path: 'recommendations', component: ContextSearchComponent},
+  { path: 'recommendations', component: RecommendationsComponent},
+  { path: 'recommendations/:id', component: SingleMovieComponent},
   { path: 'movies', component: MovieCatalogComponent},
   { path: 'movies/:id', component: SingleMovieComponent},
   { path: '',
@@ -46,7 +46,6 @@ const routes: Routes = [
     NavbarComponent,
     HomeComponent,
     RecommendationsComponent,
-    ContextSearchComponent,
     MovieCatalogComponent,
     MovieCatalogElementComponent,
     PaginationComponent,

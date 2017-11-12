@@ -8,7 +8,7 @@
     </div>
     <div class="media-body">
       <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-        <a routerLink="/movies/{{movie.id}}">{{movie.polishTitle}}</a>
+        <a routerLink="/{{this.router.url}}/{{movie.id}}">{{movie.polishTitle}}</a>
         <span class="label label-default pull-right">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
           </span>

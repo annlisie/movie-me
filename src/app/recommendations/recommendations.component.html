@@ -1,1 +1,22 @@
-<app-context-search></app-context-search>
+<div class="container">
+  <form class="" (ngSubmit)="f.valid && getRecommendations(f)" #f="ngForm" novalidate>
+    <h4>Wyszukiwanie kontekstowe</h4>
+    <br/>
+    <div *ngFor="let contextParameter of contextParams" class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+      <label>{{contextParameter.readableFieldName}}</label>
+      <select class="form-control" name="{{contextParameter.fieldName}}" [ngModel]="checkRememberedSearch(contextParameter.fieldName)">
+        <option *ngFor="let allowedValue of contextParameter.allowedValues" [value]=allowedValue.value>
+            {{allowedValue.readableValue}}
+        </option>
+
+
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-block">Pobierz rekomendacje</button>
+    </div>
+  </form>
+  <div *ngIf="recommendedMovies">
+    <app-movie-catalog-element *ngFor="let movie of recommendedMovies" [movie]="movie"></app-movie-catalog-element>
+  </div>
+</div>
