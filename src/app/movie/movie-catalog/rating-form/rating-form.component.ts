@@ -4,6 +4,7 @@ import {MovieService} from '../../shared/movie.service';
 import {UserService} from '../../../user/user.service';
 import {NgForm, FormGroup} from '@angular/forms';
 import {RatingHistoryComponent} from '../rating-history/rating-history.component';
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-rating-form',
@@ -25,6 +26,11 @@ export class RatingFormComponent implements OnInit {
   constructor(private movieService: MovieService, private userService: UserService) {
   }
 
+  clearMessage() {
+    this.success = false;
+    this.error = '';
+  }
+
   ngOnInit() {
     this.error = '';
   }
@@ -40,18 +46,17 @@ export class RatingFormComponent implements OnInit {
         f.value[i] = 'EMPTY';
       }
     }
-
-    for (const i of keyNames) {
-      console.log(i + ' ' + f.value[i]);
-    }
+    console.log(f.value['ratingValue']);
 
     this.success = false;
     this.error = '';
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser == null) {
       this.error = 'Aby móc oceniać musisz być zalogowany!';
+    } else if (!f.value['ratingValue']) {
+      this.error = 'Musisz zaznaczyć gwiazdki!';
     } else {
-      this.userService.rateMovie(f.value, this.movieId)
+        this.userService.rateMovie(f.value, this.movieId)
         .subscribe(
           (data) => {
             this.success = true;

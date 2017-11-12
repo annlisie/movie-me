@@ -25,7 +25,7 @@ export class RecommendationsComponent implements OnInit {
   ngOnInit() {
     this.movieService.getContextParameters()
       .then(response => this.contextParams = response);
-    if (localStorage.getItem('rememberedSearch') !== null) {
+    if (localStorage.getItem('currentUser') !== null && localStorage.getItem('rememberedSearch') !== null) {
       const formParams = JSON.parse(localStorage.getItem('rememberedSearch'));
       console.log(formParams);
       this.userService.getRecommendations(formParams)
@@ -48,6 +48,9 @@ export class RecommendationsComponent implements OnInit {
   }
 
   getRecommendations(f: NgForm) {
+    if (localStorage.getItem('currentUser') === null) {
+      return;
+    }
     const keyNames = Object.keys(f.value);
     for (const i of keyNames) {
       if (i !== 'ratingValue' && (f.value[i] === '' || f.value[i].isUndefined)) {
@@ -62,7 +65,10 @@ export class RecommendationsComponent implements OnInit {
           console.log(this.recommendedMovies);
         }, // Reach here if res.status >= 200 && <= 299
         (err) => {
+          // TODO dodać zastępcze filmy
           this.recommendedMovies = null;
+          const errorMessage = JSON.parse(err._body).errors;
+          console.log(errorMessage);
         });
   }
 };
