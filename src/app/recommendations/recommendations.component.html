@@ -1,15 +1,14 @@
 <div class="container">
-  <form class="" (ngSubmit)="f.valid && getRecommendations(f)" #f="ngForm" novalidate>
-    <h4>Wyszukiwanie kontekstowe</h4>
-    <br/>
+  <form (ngSubmit)="f.valid && getRecommendations(f)" #f="ngForm" novalidate>
+    <div class="form-group">
+      <h3>Wyszukiwanie kontekstowe</h3>
+    </div>
     <div *ngFor="let contextParameter of contextParams" class="form-group" [ngClass]="{ 'has-error': f.submitted }">
       <label>{{contextParameter.readableFieldName}}</label>
       <select class="form-control" name="{{contextParameter.fieldName}}" [ngModel]="checkRememberedSearch(contextParameter.fieldName)">
         <option *ngFor="let allowedValue of contextParameter.allowedValues" [value]=allowedValue.value>
             {{allowedValue.readableValue}}
         </option>
-
-
       </select>
     </div>
     <div class="form-group">
