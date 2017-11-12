@@ -1,8 +1,8 @@
-<form class="navbar-form" (ngSubmit)="f.valid && rateMovie(f)" #f="ngForm" novalidate>
+<form (ngSubmit)="f.valid && rateMovie(f)" #f="ngForm" novalidate>
   <h3>Formularz oceny</h3>
 
   <div class="form-group">
-    <label>Twoja ocena: {{value}}</label>
+    <label for="rateStars">Twoja ocena: {{value}}</label>
     <fieldset class="rate" id="rateStars">
       <input type="radio" id="rating10" name="ratingValue" value="10" [(ngModel)]="value"
              (ngModelChange)="updateRating($event)"/><label for="rating10" title="10"></label>

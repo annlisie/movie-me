@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Movie} from '../../shared/movie.model';
 import {ContextParameter} from '../rating-form/model/context-parameter.model';
 import {forEach} from '@angular/router/src/utils/collection';
+import {MovieService} from '../../shared/movie.service';
 
 @Component({
   selector: 'app-rating-history',
@@ -13,6 +14,9 @@ export class RatingHistoryComponent implements OnInit {
 
   @Input() movie: Movie;
   @Input() contextParams: ContextParameter[];
+
+  constructor(private movieService: MovieService) {
+  }
 
   ngOnInit() {
   }
@@ -47,7 +51,7 @@ export class RatingHistoryComponent implements OnInit {
 
   parseDateTime(dateTime: string) {
     let result: string[];
-    var re = /-/gi;
+    const re = /-/gi;
     result = dateTime.split('T');
     result[0] = result[0].replace(re, '.');
     result[1] = result[1].slice(0, 5);

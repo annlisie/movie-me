@@ -3,7 +3,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 @Component ({
     selector: 'app-classic-search',
     templateUrl: './classicSearch.component.html',
-    styleUrls: ['../search.component.scss', './classicSearch.component.scss']
+    styleUrls: ['../recommendations.component.scss', './classicSearch.component.scss']
 })
 
 export class ClassicSearchComponent implements OnInit{

@@ -9,8 +9,8 @@ import {RegistrationComponent} from "./authentication/registration/registration.
 import {LoginComponent} from "./authentication/login/login.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
-import {SearchComponent} from "./search/search.component";
-import {ContextSearchComponent} from "./search/contextSearch/contextSearch.component";
+import {RecommendationsComponent} from "./recommendations/recommendations.compnent";
+import {ContextSearchComponent} from "./recommendations/contextSearch/contextSearch.component";
 import {MovieCatalogComponent} from "./movie/movie-catalog/movie-catalog.component";
 import {MovieCatalogElementComponent} from "./movie/movie-catalog/movie-catalog-element/movie-catalog-element.component";
 import {PaginationComponent} from "./pagination/pagination.component";
@@ -22,6 +22,7 @@ import {RatingFormComponent} from "./movie/movie-catalog/rating-form/rating-form
 import {ChangePasswordComponent} from "./authentication/change-password/change-password.component";
 import {UserService} from "./user/user.service";
 import {RatingHistoryComponent} from "./movie/movie-catalog/rating-history/rating-history.component";
+import {MovieService} from "./movie/shared/movie.service";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -44,7 +45,7 @@ const routes: Routes = [
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    SearchComponent,
+    RecommendationsComponent,
     ContextSearchComponent,
     MovieCatalogComponent,
     MovieCatalogElementComponent,
@@ -61,7 +62,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthenticationService, EventManager, UserService],
+  providers: [AuthenticationService, EventManager, UserService, MovieService],
   bootstrap: [AppComponent]
 })
 

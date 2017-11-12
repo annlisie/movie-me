@@ -53,3 +53,11 @@ input:checked {
 label:hover ~ input:checked ~ label {
   color: $stars-color;
 }
+
+.form-control {
+  width: 90%;
+}
+
+.btn-block {
+  @extend .form-control;
+}
