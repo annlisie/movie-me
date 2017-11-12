@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
+import {Http, RequestOptions, Headers} from '@angular/http';
 import {MoviePage} from './movie-page.model';
 import 'rxjs/add/operator/toPromise';
 import {MoviePageableParams} from './movie-pageable-params.model';
@@ -8,11 +8,10 @@ import {Movie} from './movie.model';
 import {Genre} from '../movie-catalog/movie-catalog-filter/model/genre.model';
 import 'rxjs/add/operator/catch';
 import {environment} from '../../../environments/environment';
+import {ContextParameter} from '../movie-catalog/rating-form/model/context-parameter.model';
 
 @Injectable()
 export class MovieService {
-
-
   constructor(private http: Http) { }
 
   getMovies(pageableParams: MoviePageableParams, filteringParams: MovieFilteringParams): Promise<MoviePage> {
@@ -40,12 +39,30 @@ export class MovieService {
   }
 
   getSingleMovie(id: number): Promise<Movie> {
-      return this.http.get(environment.apiEndpoint + '/movies/' + id)
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let options;
+      if (currentUser != null) {
+        const headers = new Headers({
+          'Authorization': currentUser.token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        });
+        options = new RequestOptions({headers: headers});
+      }
+      return this.http.get(environment.apiEndpoint + '/movies/' + id, options)
         .toPromise()
         .then(response => {
             return <Movie>response.json().data;
           })
         .catch(reason => console.log(reason));
-    }
+  }
 
+  getContextParameters(): Promise<ContextParameter[]> {
+    return this.http.get(environment.apiEndpoint + '/ratings/contextParams')
+      .toPromise()
+      .then(response => {
+        return <ContextParameter[]>response.json().data;
+      })
+      .catch(reason => console.log(reason));
+  }
 }
