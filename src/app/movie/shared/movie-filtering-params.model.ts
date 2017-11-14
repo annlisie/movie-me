@@ -10,6 +10,7 @@ export class MovieFilteringParams {
   ratingEnd: number;
   numberOfRatingsStart: number;
   numberOfRatingsEnd: number;
+  hideRated = false;
 
   public getLabel(fieldName: string): string {
     switch (fieldName) {
@@ -31,6 +32,8 @@ export class MovieFilteringParams {
         return 'Liczba ocen od';
       case 'numberOfRatingsEnd':
         return 'Liczba ocen do';
+      case 'hideRated':
+        return 'Ukryj ocenione';
     }
   }
 

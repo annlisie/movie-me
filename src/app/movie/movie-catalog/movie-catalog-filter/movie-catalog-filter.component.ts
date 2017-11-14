@@ -130,4 +130,13 @@ export class MovieCatalogFilterComponent implements OnInit {
     }
     return foo;
   }
+
+  showOrHideRatedMovies() {
+    this.filteringParams.hideRated = !this.filteringParams.hideRated;
+    this.callPartent_loadMovies();
+  }
+
+  isUserLoggedIn() {
+    return localStorage.getItem('currentUser');
+  }
 }
