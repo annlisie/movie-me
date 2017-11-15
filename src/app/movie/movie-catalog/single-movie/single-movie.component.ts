@@ -26,12 +26,20 @@ export class SingleMovieComponent implements OnInit {
       const id = params['id'];
       this.movieService.getSingleMovie(id).then(res => {
         this.movie = res;
-        console.log(this.movie);
       });
     });
 
     this.movieService.getContextParameters()
       .then(response => this.contextParams = response);
+  }
+
+  updateMovie() {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.movieService.getSingleMovie(id).then(res => {
+        this.movie = res;
+      });
+    });
   }
 
   isUserLoggedIn() {
