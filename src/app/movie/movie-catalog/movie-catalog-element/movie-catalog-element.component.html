@@ -9,10 +9,19 @@
     <div class="media-body">
       <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
         <a routerLink="/{{this.router.url}}/{{movie.id}}">{{movie.polishTitle}}</a>
-        <span class="label label-default pull-right">
+        <div class="display-ratings pull-right">
+          <span class="label label-default" title="ocena Filmweb">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
           </span>
+          <span *ngIf="movie.customRating" class="label label-info" title="ocena Movieme">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.customRating}}
+          </span>
+          <span *ngIf="movie.rated === true" class="label label-info" title="oceniony przez Ciebie">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          </span>
+        </div>
       </h4>
+
       <div><span class="label label-default genre" *ngFor="let genre of movie.genres">{{genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}}</span></div>
       <br/>
       <div *ngIf="movie.originalTitle"><b>Oryginalny tytuł:</b> {{movie.originalTitle}}</div>
@@ -20,7 +29,6 @@
       <div><b>Długość:</b> {{movie.length}}</div>
       <br/>
       {{movie.description}}
-
     </div>
   </div>
 </div>

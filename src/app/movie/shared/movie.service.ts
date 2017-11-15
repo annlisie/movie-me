@@ -17,9 +17,12 @@ export class MovieService {
   getMovies(pageableParams: MoviePageableParams, filteringParams: MovieFilteringParams): Promise<MoviePage> {
     const params = pageableParams.toParamsObject();
     params.appendAll(filteringParams.toParamsObject());
-
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const requestOptions = new RequestOptions();
     requestOptions.params = params;
+    if (currentUser != null) {
+      requestOptions.headers = new Headers({'Authorization': currentUser.token});
+    }
 
     return this.http.get(environment.apiEndpoint + '/movies', requestOptions)
       .toPromise()

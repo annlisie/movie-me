@@ -24,14 +24,16 @@
         (click)="setSelectedFilter(filter)"
         [ngClass]="{active: selectedFilter===filter}">
   <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
-  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" *ngIf="selectedFilter!=filter"></span>
+  <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" *ngIf="selectedFilter==filter"></span>
 </button>
 
 <!--Genre Filter-->
 <button type="button" class="filterButtons btn btn-default" (click)="showOrHideGenreFilter()"
         [ngClass]="{active: showGenreFilter}">
   <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
-  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" *ngIf="!showGenreFilter"></span>
+  <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" *ngIf="showGenreFilter"></span>
 </button>
 
 <!--Filter form-->

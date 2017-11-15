@@ -6,3 +6,18 @@
 .label-default {
   background-color: darkgrey;
 }
+
+.label-info {
+  background-color: #990033;
+  .glyphicon-star {
+    font-size: smaller;
+    margin-top: 2px;
+  }
+}
+
+.display-ratings {
+  > span {
+    display: block;
+    margin-bottom: 3px;
+  }
+}
