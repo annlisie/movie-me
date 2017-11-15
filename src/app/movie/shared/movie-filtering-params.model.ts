@@ -12,6 +12,13 @@ export class MovieFilteringParams {
   numberOfRatingsEnd: number;
   hideRated = false;
 
+  constructor() {}
+  public fill(object) {
+    const keys = Object.keys(object);
+    keys.forEach((k) => {
+      this[k] = object[k];
+    });
+  }
   public getLabel(fieldName: string): string {
     switch (fieldName) {
       case 'genresIds':

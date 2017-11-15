@@ -6,7 +6,7 @@ export class MoviePageableParams {
 
   constructor() {
     this.page = 0;
-    this. numberOfElementsOnPage = 10;
+    this.numberOfElementsOnPage = 10;
     this.columnToSort = 'id';
   }
 

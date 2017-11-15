@@ -2,8 +2,7 @@
     <div *ngIf="movie" class="row">
       <div class="col-md-3 text-center">
         <span class="float-md-left">
-          <img style="width: 250px"
-               [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
+          <img [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
         </span>
       </div>
       <div class="col-md-5 text-left">
@@ -24,7 +23,7 @@
         <p class="description">{{movie.description}}</p>
       </div>
       <div class="col-md-4 text-left">
-          <app-rating-form [movieId]="movie.id" [contextParams]="contextParams"></app-rating-form>
+          <app-rating-form [movieId]="movie.id" [contextParams]="contextParams" (movieRated)="updateMovie()"></app-rating-form>
       </div>
     </div>
     <div class="row">

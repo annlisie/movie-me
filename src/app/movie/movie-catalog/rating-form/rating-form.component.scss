@@ -9,12 +9,14 @@ fieldset {
   border: 0;
   font-size: 30px;
   color: #d3d3d3;
+
   > {
     input {
       display: none;
     }
     label {
       float: right;
+      margin-bottom: -20px;
       &:before {
         display: inline-block;
         font-size: 30px;
