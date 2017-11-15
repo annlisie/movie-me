@@ -87,23 +87,12 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
 
-  title = 'Zaznacz wszystkie';
-  sign = 'check';
-  toggleSelect(){
-    if(this.title == 'Zaznacz wszystkie'){
+  deselect(){
       for (var i = 0; i < this.genres.length; i++){
-        this.genres[i].checkboxActive = true;
+        if(this.genres[i].checkboxActive == true){
+          this.genres[i].checkboxActive = false;
+        }
       }
-      this.title = 'Odznacz wszystkie';
-      this.sign = 'unchecked';
-    }
-    else {
-      for (var i = 0; i < this.genres.length; i++){
-        this.genres[i].checkboxActive = false;
-      }
-      this.title = 'Zaznacz wszystkie';
-      this.sign = 'check';
-    }
   }
 
 
