@@ -5,7 +5,6 @@ import {Filter} from './model/filter.model';
 import {FilterField} from './model/filter-field.model';
 import {Genre} from './model/genre.model';
 import {MovieService} from '../../shared/movie.service';
-import {MoviePageableParams} from "../../shared/movie-pageable-params.model";
 
 @Component({
   selector: 'app-movie-catalog-filter',
@@ -17,8 +16,6 @@ export class MovieCatalogFilterComponent implements OnInit {
 
   @Input() filteringParams: MovieFilteringParams;
   @Output() applyFilterEvent = new EventEmitter<MovieFilteringParams>();
-
- // @Input() pageableParams: MoviePageableParams = new MoviePageableParams;
 
   private objectKeys = Object.keys; // used in template
 
@@ -88,6 +85,27 @@ export class MovieCatalogFilterComponent implements OnInit {
     this.showGenreFilter = false;
     this.callPartent_loadMovies();
   }
+
+
+  title = 'Zaznacz wszystkie';
+  sign = 'check';
+  toggleSelect(){
+    if(this.title == 'Zaznacz wszystkie'){
+      for (var i = 0; i < this.genres.length; i++){
+        this.genres[i].checkboxActive = true;
+      }
+      this.title = 'Odznacz wszystkie';
+      this.sign = 'unchecked';
+    }
+    else {
+      for (var i = 0; i < this.genres.length; i++){
+        this.genres[i].checkboxActive = false;
+      }
+      this.title = 'Zaznacz wszystkie';
+      this.sign = 'check';
+    }
+  }
+
 
   clearFilter(key) {
     this.filteringParams[key] = null;
