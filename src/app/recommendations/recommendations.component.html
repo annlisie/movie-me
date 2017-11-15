@@ -18,7 +18,7 @@
       <button type="submit" class="btn btn-block">Pobierz rekomendacje</button>
     </div>
   </form>
-  <app-movie-catalog-filter [filteringParams]="filteringParams" (applyFilterEvent)="getRecommendations(f)"></app-movie-catalog-filter>
+  <app-movie-catalog-filter [filteringParams]="filteringParams" [includeHideRatedFilter]="false" (applyFilterEvent)="getRecommendations(f)"></app-movie-catalog-filter>
   <div *ngIf="recommendedMovies">
     <app-movie-catalog-element *ngFor="let movie of recommendedMovies" [movie]="movie"></app-movie-catalog-element>
   </div>

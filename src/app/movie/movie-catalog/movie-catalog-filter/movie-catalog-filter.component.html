@@ -39,7 +39,7 @@
 </button>
 
 <!--Hide/show rated movies -->
-<button *ngIf="isUserLoggedIn()" type="button" class="filterButtons btn btn-default" (click)="showOrHideRatedMovies()">
+<button *ngIf="isUserLoggedIn() && includeHideRatedFilter" type="button" class="filterButtons btn btn-default" (click)="showOrHideRatedMovies()">
   <span [ngClass]="filteringParams.hideRated ? 'glyphicon glyphicon-eye-open' : 'glyphicon glyphicon-eye-close'" aria-hidden="true"></span>
   {{filteringParams.hideRated ? 'Pokaż ocenione' : 'Ukryj ocenione'}}
 </button>

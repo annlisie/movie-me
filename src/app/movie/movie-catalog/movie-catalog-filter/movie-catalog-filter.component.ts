@@ -13,6 +13,7 @@ import {MovieService} from '../../shared/movie.service';
 export class MovieCatalogFilterComponent implements OnInit {
 
   @Input() filteringParams: MovieFilteringParams;
+  @Input() includeHideRatedFilter = true;
   @Output() applyFilterEvent = new EventEmitter<MovieFilteringParams>();
 
   private objectKeys = Object.keys; // used in template

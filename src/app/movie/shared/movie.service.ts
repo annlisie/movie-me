@@ -24,11 +24,6 @@ export class MovieService {
       requestOptions.headers = new Headers({'Authorization': currentUser.token});
     }
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser != null) {
-      requestOptions.headers = new Headers({'Authorization': currentUser.token});
-    }
-
     return this.http.get(environment.apiEndpoint + '/movies', requestOptions)
       .toPromise()
       .then(response => {
