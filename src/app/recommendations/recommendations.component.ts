@@ -52,6 +52,14 @@ export class RecommendationsComponent implements OnInit {
     return obj[key];
   }
 
+  wasHideRatedChecked() {
+    const obj = JSON.parse(localStorage.getItem('rememberedSearch'));
+    if (obj === null || obj['hideRated'].isUndefined) {
+      return true;
+    }
+    return obj['hideRated'];
+  }
+
   getRecommendations(f: NgForm) {
     if (localStorage.getItem('currentUser') === null) {
       alert('Aby otrzymać rekomendacje musisz być zalogowany!');
