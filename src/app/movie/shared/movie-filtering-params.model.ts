@@ -10,6 +10,12 @@ export class MovieFilteringParams {
   ratingEnd: number;
   numberOfRatingsStart: number;
   numberOfRatingsEnd: number;
+  columnToSort: string;
+  sortDirection: string;
+
+  constructor(){
+    this.columnToSort = 'id';
+  }
 
   public getLabel(fieldName: string): string {
     switch (fieldName) {

@@ -2,7 +2,7 @@
 
 <div class="activeFilters">
   <div class="chosenFilters" *ngFor="let key of objectKeys(filteringParams)">
-    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != 'genresIds'">
+    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != ('genresIds' && 'sortDirection')">
       <span class="tag label label-default">
         <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
         <a (click)="clearFilter(key)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
@@ -19,6 +19,7 @@
   </div>
 </div>
 
+
 <!--Filters button-->
 <button type="button" class="filterButtons btn btn-default" *ngFor="let filter of filters"
         (click)="setSelectedFilter(filter)"
@@ -33,6 +34,11 @@
   <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
+
+<!--Select value to sort-->
+<select class="filterButtons btn btn-default" [(ngModel)]="selectedValue" (change)="setSelectedValueToSort($event)">
+  <option *ngFor="let v of values; let i = index" [value]="i">{{v.name}}</option>
+</select>
 
 <!--Filter form-->
 <form (submit)="updateFilters(selectedFilter)" class="filterForm form-inline" *ngIf="selectedFilter">
@@ -63,3 +69,4 @@
     </div>
   </form>
 </div>
+

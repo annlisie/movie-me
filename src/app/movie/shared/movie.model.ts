@@ -8,5 +8,4 @@ export class Movie {
   lengthInMinutes: number;
   poster: string;
   rating: number;
-
 }
