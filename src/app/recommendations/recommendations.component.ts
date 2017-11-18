@@ -40,6 +40,7 @@ export class RecommendationsComponent implements OnInit {
             console.log(this.recommendedMovies);
           }, // Reach here if res.status >= 200 && <= 299
           (err) => {
+            this.getMoviesForReplacement();
           });
     }
   }
@@ -94,7 +95,9 @@ export class RecommendationsComponent implements OnInit {
   getMoviesForReplacement() {
     this.pageableParams.numberOfElementsOnPage = 5;
     this.pageableParams.page = 0;
-    this.pageableParams.columnToSort = 'id';
+    this.pageableParams.columnToSort = 'filmwebRating';
+    this.pageableParams.sortDirection = 'DESC';
+    this.filteringParams.hideRated = this.wasHideRatedChecked();
     this.movieService.getMovies(this.pageableParams, this.filteringParams)
       .then(response => this.recommendedMovies = <Movie[]>response.content);
   }
