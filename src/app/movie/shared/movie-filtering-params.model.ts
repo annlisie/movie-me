@@ -10,6 +10,8 @@ export class MovieFilteringParams {
   ratingEnd: number;
   numberOfRatingsStart: number;
   numberOfRatingsEnd: number;
+  hideRated = false;
+
   constructor() {}
   public fill(object) {
     const keys = Object.keys(object);
@@ -37,6 +39,8 @@ export class MovieFilteringParams {
         return 'Liczba ocen od';
       case 'numberOfRatingsEnd':
         return 'Liczba ocen do';
+      case 'hideRated':
+        return 'Ukryj ocenione';
     }
   }
 

@@ -13,6 +13,7 @@ import {MovieService} from '../../shared/movie.service';
 export class MovieCatalogFilterComponent implements OnInit {
 
   @Input() filteringParams: MovieFilteringParams;
+  @Input() includeHideRatedFilter = true;
   @Output() applyFilterEvent = new EventEmitter<MovieFilteringParams>();
 
   private objectKeys = Object.keys; // used in template
@@ -129,5 +130,14 @@ export class MovieCatalogFilterComponent implements OnInit {
       foo.push(i);
     }
     return foo;
+  }
+
+  showOrHideRatedMovies() {
+    this.filteringParams.hideRated = !this.filteringParams.hideRated;
+    this.callPartent_loadMovies();
+  }
+
+  isUserLoggedIn() {
+    return localStorage.getItem('currentUser');
   }
 }

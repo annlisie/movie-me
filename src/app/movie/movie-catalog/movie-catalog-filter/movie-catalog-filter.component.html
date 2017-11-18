@@ -4,10 +4,12 @@
   <div class="chosenFilters" *ngFor="let key of objectKeys(filteringParams)">
     <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != 'genresIds'">
       <span class="tag label label-default">
-        <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
+        <span *ngIf="key != 'hideRated'">{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
+        <span *ngIf="key == 'hideRated'">{{filteringParams.getLabel(key)}}</span>
         <a (click)="clearFilter(key)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
       </span>
     </ng-container>
+
   </div>
 
   <!-- Selected genres -->
@@ -34,6 +36,12 @@
   <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" *ngIf="!showGenreFilter"></span>
   <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" *ngIf="showGenreFilter"></span>
+</button>
+
+<!--Hide/show rated movies -->
+<button *ngIf="isUserLoggedIn() && includeHideRatedFilter" type="button" class="filterButtons btn btn-default" (click)="showOrHideRatedMovies()">
+  <span [ngClass]="filteringParams.hideRated ? 'glyphicon glyphicon-eye-open' : 'glyphicon glyphicon-eye-close'" aria-hidden="true"></span>
+  {{filteringParams.hideRated ? 'Pokaż ocenione' : 'Ukryj ocenione'}}
 </button>
 
 <!--Filter form-->
