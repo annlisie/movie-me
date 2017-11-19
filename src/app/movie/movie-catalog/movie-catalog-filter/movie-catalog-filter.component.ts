@@ -94,7 +94,18 @@ export class MovieCatalogFilterComponent implements OnInit {
         }
       }
   }
+  clearAllFilters() {
+    for (let key of this.objectKeys(this.filteringParams)) {
+      this.filteringParams[key] = null;
+    }
 
+    for (var i = 0; i < this.selectedGenres.length; i++){
+      this.selectedGenres[i].checkboxActive = false;
+    }
+    this.updateGenresFilter();
+
+    this.callPartent_loadMovies();
+  }
 
   clearFilter(key) {
     this.filteringParams[key] = null;

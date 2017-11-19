@@ -1,5 +1,6 @@
 $tag-a-color: #bbb;
 $glyphicon-color: #fff;
+$primary-color: #990033;
 
 .tag {
   font-size: 14px;
@@ -45,4 +46,8 @@ $glyphicon-color: #fff;
 .col-md-2 {
   margin-left: 20px;
   width: 175px;
+}
+
+.removeAllFilters {
+  background-color: $primary-color;
 }
