@@ -8,8 +8,8 @@
         <span>{{filteringParams.getLabel(key)}} {{filteringParams[key]}}</span>
         <a (click)="clearFilter(key)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
       </span>
-        </ng-container>
-    </div>
+    </ng-container>
+</div>
 
     <!-- Selected genres -->
     <div class="chosenFilters" *ngFor="let selectedGenre of selectedGenres; let i = index">
@@ -25,23 +25,21 @@
             <a (click)="clearAllFilters()"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
          </span>
     </div>
-
 </div>
-
 
 <!--Filters button-->
 <button type="button" class="filterButtons btn btn-default" *ngFor="let filter of filters"
         (click)="setSelectedFilter(filter)"
         [ngClass]="{active: selectedFilter===filter}">
-    <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
-    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+  <span class="{{filter.img}}" aria-hidden="true"></span> {{filter.label}}
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
 <!--Genre Filter-->
 <button type="button" class="filterButtons btn btn-default" (click)="showOrHideGenreFilter()"
         [ngClass]="{active: showGenreFilter}">
-    <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
-    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Gatunek
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </button>
 
 <!--Select value to sort-->
@@ -51,16 +49,16 @@
 
 <!--Filter form-->
 <form (submit)="updateFilters(selectedFilter)" class="filterForm form-inline" *ngIf="selectedFilter">
-    <div class="form-group" *ngFor="let field of selectedFilter.fields">
-        <label [for]="field.label">{{field.label}}</label>
-        <input *ngIf="!field.allowedValues" [(ngModel)]="field.value" [type]="field.type" class="form-control"
-               [id]="field.label" [ngModelOptions]="{standalone: true}">
-        <select *ngIf="field.allowedValues" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"
-                class="form-control">
-            <option *ngFor="let val of field.allowedValues" [ngValue]="val">{{val}}</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-default">Aktualizuj</button>
+  <div class="form-group" *ngFor="let field of selectedFilter.fields">
+    <label [for]="field.label">{{field.label}}</label>
+    <input *ngIf="!field.allowedValues" [(ngModel)]="field.value" [type]="field.type" class="form-control"
+           [id]="field.label" [ngModelOptions]="{standalone: true}">
+    <select *ngIf="field.allowedValues" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"
+            class="form-control">
+      <option *ngFor="let val of field.allowedValues" [ngValue]="val">{{val}}</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Aktualizuj</button>
 </form>
 
 
@@ -81,4 +79,3 @@
         </div>
     </form>
 </div>
-

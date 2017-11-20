@@ -1,0 +1,57 @@
+.panel {
+  border: none;
+}
+
+body {
+  background-color: #bdc3c7;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.star {
+  float: left;
+  margin: auto;
+  &:before {
+    display: flex;
+    font-size: 30px;
+    content: "\2605 "; /* full star */
+    color: #990033;
+  }
+}
+
+.table-fixed {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  tbody {
+    height:200px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  thead,tbody,tr,td,th {
+    display: block;
+    vertical-align: middle;
+  }
+  tbody {
+    td {
+      float: left;
+      height: 60px;
+    }
+  }
+  thead {
+    tr {
+      th {
+        float: left;
+        background-color: darkgrey;
+        border-color:grey;
+        &:hover{
+          color: #990033;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

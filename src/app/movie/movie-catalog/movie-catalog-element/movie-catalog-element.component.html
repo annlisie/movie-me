@@ -8,15 +8,16 @@
     </div>
     <div class="media-body">
       <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-        {{movie.polishTitle}}
-        <span class="label label-info pull-right">
-            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.rating}}
+        <a routerLink="/movies/{{movie.id}}">{{movie.polishTitle}}</a>
+        <span class="label label-default pull-right">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
           </span>
       </h4>
+      <div><span class="label label-default genre" *ngFor="let genre of movie.genres">{{genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}}</span></div>
       <br/>
-      <b>Oryginalny tytuł:</b> {{movie.originalTitle}} <br/>
-      <b>Rok produkcji:</b> {{movie.year}} <br/>
-      <b>Długość:</b> {{movie.length}} <br/>
+      <div *ngIf="movie.originalTitle"><b>Oryginalny tytuł:</b> {{movie.originalTitle}}</div>
+      <div><b>Rok produkcji:</b> {{movie.year}}</div>
+      <div><b>Długość:</b> {{movie.length}}</div>
       <br/>
       {{movie.description}}
 

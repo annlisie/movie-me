@@ -1,0 +1,43 @@
+<form class="navbar-form" (ngSubmit)="f.valid && rateMovie(f)" #f="ngForm" novalidate>
+  <h3>Formularz oceny</h3>
+
+  <div class="form-group">
+    <label>Twoja ocena: {{value}}</label>
+    <fieldset class="rate" id="rateStars">
+      <input type="radio" id="rating10" name="ratingValue" value="10" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating10" title="10"></label>
+      <input type="radio" id="rating9" name="ratingValue" value="9" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating9" title="9"></label>
+      <input type="radio" id="rating8" name="ratingValue" value="8" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating8" title="8"></label>
+      <input type="radio" id="rating7" name="ratingValue" value="7" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating7" title="7"></label>
+      <input type="radio" id="rating6" name="ratingValue" value="6" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating6" title="6"></label>
+      <input type="radio" id="rating5" name="ratingValue" value="5" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating5" title="5"></label>
+      <input type="radio" id="rating4" name="ratingValue" value="4" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating4" title="4"></label>
+      <input type="radio" id="rating3" name="ratingValue" value="3" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating3" title="3"></label>
+      <input type="radio" id="rating2" name="ratingValue" value="2" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating2" title="2"></label>
+      <input type="radio" id="rating1" name="ratingValue" value="1" [(ngModel)]="value"
+             (ngModelChange)="updateRating($event)"/><label for="rating1" title="1"></label>
+    </fieldset>
+  </div>
+  <div *ngFor="let contextParameter of contextParams" class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+    <label>{{contextParameter.readableFieldName}}</label>
+    <select class="form-control" name="{{contextParameter.fieldName}}" ngModel>
+      <option *ngFor="let allowedValue of contextParameter.allowedValues" [value]=allowedValue.value>
+        {{allowedValue.readableValue}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-block">Oceń film</button>
+  </div>
+</form>
+<div *ngIf="success" class="alert alert-success">Pomyślnie dodano ocenę!</div>
+<div *ngIf="!success && error" class="alert alert-danger">{{error}}</div>
+

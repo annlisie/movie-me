@@ -1,0 +1,37 @@
+<div class="container">
+    <div *ngIf="movie" class="row">
+      <div class="col-md-3 text-center">
+        <span class="float-md-left">
+          <img style="width: 250px"
+               [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
+        </span>
+      </div>
+      <div class="col-md-5 text-left">
+        <span class="float-md-left title">{{movie.polishTitle}}</span>
+        <span class="year">({{movie.year}})</span>
+        <br/>
+        <div><span class="label label-default genre" *ngFor="let genre of movie.genres">{{genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}}</span></div>
+        <br/>
+        <p *ngIf="movie.customRating > 0" class="rating">Nasza ocena: <span class="label label-default">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.customRating}}
+          </span></p>
+        <p class="rating">Ocena filmweb: <span class="label label-default">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
+          </span></p>
+        <p *ngIf="movie.originalTitle" class="float-md-left rating">Tytuł oryginalny: {{movie.originalTitle}}</p>
+        <p class="rating">Czas trwania: {{movie.length}}</p>
+        <br/>
+        <p class="description">{{movie.description}}</p>
+      </div>
+      <div class="col-md-4 text-left">
+          <app-rating-form [movieId]="movie.id" [contextParams]="contextParams"></app-rating-form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 text-left">
+      </div>
+      <div class="col-md-9 text-left">
+        <app-rating-history *ngIf="isUserLoggedIn() && movie && movie.ratings.length > 0" [movie]="movie" [contextParams]="contextParams"></app-rating-history>
+      </div>
+    </div>
+</div>

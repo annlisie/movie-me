@@ -1,0 +1,23 @@
+<h3>Twoje oceny</h3>
+<div class="panel panel-default">
+  <table class="table table-fixed header-fixed">
+    <thead>
+      <tr>
+        <th class="col-xs-2">Data</th>
+        <th class="col-xs-5">Ocena</th>
+        <th class="col-xs-5">Kontekst</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rating of movie.ratings">
+        <td class="col-xs-2"><span>{{parseDateTime(rating.dateTime)}}</span></td>
+        <td class="col-xs-5"><span class ="star" *ngFor="let item of createRange(rating.ratingValue)"></span></td>
+        <td class="col-xs-5">
+          <ul>
+            <li *ngFor="let value of getReadableValues(rating.contextParams)">{{value}}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -23,6 +23,11 @@ export class NavbarComponent implements OnInit {
         }
       }
     });
+    if (localStorage.getItem('currentUser') != null) {
+      this.showNavBar = true;
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      this.userEmail = user.email;
+    }
   }
 
   ngOnInit() {

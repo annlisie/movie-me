@@ -1,3 +1,6 @@
+import {Genre} from './genre.model';
+import {Rating} from './rating.model';
+
 export class Movie {
   id: number;
   polishTitle: string;
@@ -8,4 +11,9 @@ export class Movie {
   lengthInMinutes: number;
   poster: string;
   rating: number;
+  genres: Array<Genre>;
+  customRating: number;
+  filmwebRating: number;
+  rated: boolean;
+  ratings: Array<Rating>;
 }
