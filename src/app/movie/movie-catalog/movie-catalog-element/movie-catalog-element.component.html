@@ -8,7 +8,7 @@
     </div>
     <div class="media-body">
       <h4 style="margin-top: 12px; margin-right: 10px;" class="media-heading">
-        <a routerLink="/{{this.router.url}}/{{movie.id}}">{{movie.polishTitle}}</a>
+        <a routerLink="/{{this.router.url}}/{{movie.id}}" style="color: #333;">{{movie.polishTitle}}</a>
         <div class="display-ratings pull-right">
           <span class="label label-default" title="ocena Filmweb">
             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{movie.filmwebRating}}
@@ -24,9 +24,9 @@
 
       <div><span class="label label-default genre" *ngFor="let genre of movie.genres">{{genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}}</span></div>
       <br/>
-      <div *ngIf="movie.originalTitle"><b>Oryginalny tytuł:</b> {{movie.originalTitle}}</div>
-      <div><b>Rok produkcji:</b> {{movie.year}}</div>
-      <div><b>Długość:</b> {{movie.length}}</div>
+      <div *ngIf="movie.originalTitle" style="color: #333;"><b>Oryginalny tytuł:</b> {{movie.originalTitle}}</div>
+      <div style="color: #333;"><b>Rok produkcji:</b> {{movie.year}}</div>
+      <div style="color: #333;"><b>Długość:</b> {{movie.length}}</div>
       <br/>
       {{movie.description}}
     </div>
