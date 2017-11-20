@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MovieFilteringParams} from '../../shared/movie-filtering-params.model';
+import {Movie} from '../../shared/movie.model';
 import {Filter} from './model/filter.model';
 import {FilterField} from './model/filter-field.model';
 import {Genre} from './model/genre.model';
@@ -10,6 +11,7 @@ import {MovieService} from '../../shared/movie.service';
   templateUrl: './movie-catalog-filter.component.html',
   styleUrls: ['./movie-catalog-filter.component.scss']
 })
+
 export class MovieCatalogFilterComponent implements OnInit {
 
   @Input() filteringParams: MovieFilteringParams;
@@ -24,6 +26,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   private showGenreFilter = false;
   private genres: Genre[];
   private selectedGenres: Genre[] = [];
+  private selectedValue;
 
   constructor(private movieService: MovieService) {
   }
@@ -94,6 +97,27 @@ export class MovieCatalogFilterComponent implements OnInit {
     this.callPartent_loadMovies();
   }
 
+
+  deselect(){
+      for (var i = 0; i < this.genres.length; i++){
+        if(this.genres[i].checkboxActive == true){
+          this.genres[i].checkboxActive = false;
+        }
+      }
+  }
+  clearAllFilters() {
+    for (let key of this.objectKeys(this.filteringParams)) {
+      this.filteringParams[key] = null;
+    }
+
+    for (var i = 0; i < this.selectedGenres.length; i++){
+      this.selectedGenres[i].checkboxActive = false;
+    }
+    this.updateGenresFilter();
+
+    this.callPartent_loadMovies();
+  }
+
   clearFilter(key) {
     this.filteringParams[key] = null;
     this.callPartent_loadMovies();
@@ -142,6 +166,7 @@ export class MovieCatalogFilterComponent implements OnInit {
     return foo;
   }
 
+
   showOrHideRatedMovies() {
     this.filteringParams.hideRated = !this.filteringParams.hideRated;
     this.callPartent_loadMovies();
@@ -150,4 +175,28 @@ export class MovieCatalogFilterComponent implements OnInit {
   isUserLoggedIn() {
     return localStorage.getItem('currentUser');
   }
+
+  values = [
+    {id: 1, name: 'Rok produkcji rosnąco', englishName: 'year', order: 'ASC'},
+    {id: 2, name: 'Rok produkcji malejąco', englishName: 'year', order: 'DESC'},
+    {id: 3, name: 'Czas trwania rosnąco', englishName: 'lengthMinutes', order: 'ASC'},
+    {id: 4, name: 'Czas trwania malejąco', englishName: 'lengthMinutes', order: 'DESC'},
+    {id: 5, name: 'Ocena Filmwebu rosnąco', englishName: 'filmwebRating', order: 'ASC'},
+    {id: 6, name: 'Ocena Filmwebu malejąco', englishName: 'filmwebRating', order: 'DESC'},
+    {id: 7, name: 'Ocena Movieme rosnąco', englishName: 'customRating', order: 'ASC'},
+    {id: 8, name: 'Ocena Movieme malejąco', englishName: 'customRating', order: 'DESC'},
+    {id: 9, name: 'Liczba ocen rosnąco', englishName: 'numberOfRatings', order: 'ASC'},
+    {id: 10, name: 'Liczba ocen malejąco', englishName: 'numberOfRatings', order: 'DESC'}
+  ];
+
+
+  setSelectedValueToSort(){
+    var value = this.values[this.selectedValue];
+
+    this.filteringParams.columnToSort = value.englishName;
+    this.filteringParams.sortDirection = value.order;
+
+    this.callPartent_loadMovies();
+  }
+
 }

@@ -11,8 +11,13 @@ export class MovieFilteringParams {
   numberOfRatingsStart: number;
   numberOfRatingsEnd: number;
   hideRated = false;
+  columnToSort: string;
+  sortDirection: string;
 
-  constructor() {}
+
+  constructor() {
+    this.columnToSort = 'id';
+  }
   public fill(object) {
     const keys = Object.keys(object);
     keys.forEach((k) => {

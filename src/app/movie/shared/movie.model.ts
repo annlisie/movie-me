@@ -10,6 +10,7 @@ export class Movie {
   length: string;
   lengthInMinutes: number;
   poster: string;
+  rating: number;
   genres: Array<Genre>;
   customRating: number;
   filmwebRating: number;

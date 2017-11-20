@@ -37,6 +37,8 @@ export class MovieCatalogComponent implements OnInit {
       .subscribe(searchValue => {
         this.searchValue = searchValue;
         this.filteringParams.searchedTerm = searchValue;
+        this.filteringParams.columnToSort = 'id';
+        //this.filteringParams.sortDirection = 'desc';
         this.loadMovies(0);
       });
   }
@@ -45,7 +47,12 @@ export class MovieCatalogComponent implements OnInit {
     this.loadMovies(0);
   }
 
-  loadMovies(page: number) {
+  loadMovies(page: number, eventFilteringParams: MovieFilteringParams = null) {
+
+    if(eventFilteringParams != null){
+      this.filteringParams = eventFilteringParams;
+    }
+    console.log(this.filteringParams);
     this.loading = true;
     this.pageableParams.page = page;
     this.movieService.getMovies(this.pageableParams, this.filteringParams)
