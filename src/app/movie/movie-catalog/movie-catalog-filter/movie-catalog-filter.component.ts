@@ -30,7 +30,17 @@ export class MovieCatalogFilterComponent implements OnInit {
 
   ngOnInit() {
     this.movieService.getGenres()
-      .then(response => this.genres = response);
+      .then(response => {
+        this.genres = response;
+        if (this.filteringParams.genresIds) {
+          for (let i = 0; i < this.filteringParams.genresIds.length; i++) {
+            const genreId = this.filteringParams.genresIds[i];
+            const genre = this.genres[genreId - 1];
+            genre.checkboxActive = true;
+            this.selectedGenres.push(genre);
+          }
+        }
+      });
     const ratingValues = this.generateArray(1, 10);
     const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
     this.filters =
