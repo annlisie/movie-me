@@ -16,6 +16,7 @@ export class MovieCatalogFilterComponent implements OnInit {
 
   @Input() filteringParams: MovieFilteringParams;
   @Input() includeHideRatedFilter = true;
+  @Input() includeColumnToSortSelect = true;
   @Output() applyFilterEvent = new EventEmitter<MovieFilteringParams>();
 
   private objectKeys = Object.keys; // used in template

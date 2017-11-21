@@ -63,7 +63,7 @@
 </button>
 
 <!--Select value to sort-->
-<select class="filterButtons btn btn-default" [(ngModel)]="selectedValue" (change)="setSelectedValueToSort($event)">
+<select class="filterButtons btn btn-default" [(ngModel)]="selectedValue" (change)="setSelectedValueToSort($event)" *ngIf="includeColumnToSortSelect">
     <option *ngFor="let v of values; let i = index" [value]="i">{{v.name}}</option>
 </select>
 
