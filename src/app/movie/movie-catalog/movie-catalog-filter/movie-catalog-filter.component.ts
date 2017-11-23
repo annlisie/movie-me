@@ -185,9 +185,7 @@ export class MovieCatalogFilterComponent implements OnInit {
     {id: 5, name: 'Ocena Filmwebu rosnąco', englishName: 'filmwebRating', order: 'ASC'},
     {id: 6, name: 'Ocena Filmwebu malejąco', englishName: 'filmwebRating', order: 'DESC'},
     {id: 7, name: 'Ocena Movieme rosnąco', englishName: 'customRating', order: 'ASC'},
-    {id: 8, name: 'Ocena Movieme malejąco', englishName: 'customRating', order: 'DESC'},
-    {id: 9, name: 'Liczba ocen rosnąco', englishName: 'numberOfRatings', order: 'ASC'},
-    {id: 10, name: 'Liczba ocen malejąco', englishName: 'numberOfRatings', order: 'DESC'}
+    {id: 8, name: 'Ocena Movieme malejąco', englishName: 'customRating', order: 'DESC'}
   ];
 
 

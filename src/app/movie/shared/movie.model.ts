@@ -16,4 +16,7 @@ export class Movie {
   filmwebRating: number;
   rated: boolean;
   ratings: Array<Rating>;
+  premierePoland: string;
+  premiereWorld: string;
+  filmwebUrl: string;
 }

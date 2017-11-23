@@ -4,6 +4,9 @@
         <span class="float-md-left">
           <img [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
         </span>
+        <a style="width: 100%; margin-top: 5px; margin-bottom: 0px" *ngIf="movie.filmwebUrl" class="btn btn-default" [href]=movie.filmwebUrl role="button">
+          <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Wyświetl w serwisie Filmweb
+        </a>
       </div>
       <div class="col-md-5 text-left">
         <span class="float-md-left title">{{movie.polishTitle}}</span>
@@ -19,6 +22,8 @@
           </span></p>
         <p *ngIf="movie.originalTitle" class="float-md-left rating">Tytuł oryginalny: {{movie.originalTitle}}</p>
         <p class="rating">Czas trwania: {{movie.length}}</p>
+        <p *ngIf="movie.premierePoland" class="float-md-left rating">Premiera polska: {{movie.premierePoland}}</p>
+        <p *ngIf="movie.premiereWorld" class="float-md-left rating">Premiera światowa: {{movie.premiereWorld}}</p>
         <br/>
         <p class="description">{{movie.description}}</p>
       </div>
