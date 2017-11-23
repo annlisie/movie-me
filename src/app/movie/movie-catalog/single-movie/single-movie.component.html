@@ -4,7 +4,7 @@
         <span class="float-md-left">
           <img [src]='sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64," + movie.poster)'>
         </span>
-        <a style="width: 100%; margin-top: 5px; margin-bottom: 0px" *ngIf="movie.filmwebUrl" class="btn btn-default" [href]=movie.filmwebUrl role="button">
+        <a *ngIf="movie.filmwebUrl" class="btn btn-default filmwebUrl" [href]=movie.filmwebUrl role="button">
           <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Wyświetl w serwisie Filmweb
         </a>
       </div>
