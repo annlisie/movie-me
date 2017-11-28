@@ -12,6 +12,7 @@ export class Movie {
   poster: string;
   rating: number;
   genres: Array<Genre>;
+  countries: Array<string>;
   customRating: number;
   filmwebRating: number;
   rated: boolean;

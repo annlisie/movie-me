@@ -1,6 +1,6 @@
 <div class="container">
 
-  <app-movie-catalog-filter [filteringParams]="filteringParams" (applyFilterEvent)="loadMovies(0, e)" ></app-movie-catalog-filter>
+  <app-movie-catalog-filter [filteringParams]="filteringParams" [pageableParams]="pageableParams" (applyFilterEvent)="loadMovies(0)" ></app-movie-catalog-filter>
 
   <div class="input-group input-group-lg">
     <span class="input-group-addon" id="sizing-addon1">
@@ -25,7 +25,7 @@
     </app-pagination>
 
   </div>
-  <div *ngIf="!loading && !movies" class="jumbotron">
+  <div *ngIf="!loading && !movies.length" class="jumbotron">
     <h3>Brak filmów spełniających kryteria!</h3>
   </div>
 

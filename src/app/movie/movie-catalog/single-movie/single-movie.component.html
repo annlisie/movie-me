@@ -24,6 +24,7 @@
         <p class="rating">Czas trwania: {{movie.length}}</p>
         <p *ngIf="movie.premierePoland" class="float-md-left rating">Premiera polska: {{movie.premierePoland}}</p>
         <p *ngIf="movie.premiereWorld" class="float-md-left rating">Premiera światowa: {{movie.premiereWorld}}</p>
+        <p *ngIf="movie.countries.length" class="float-md-left rating">Produkcja: <span> {{movie.countries.join(", ")}} </span> </p>
         <br/>
         <p class="description">{{movie.description}}</p>
       </div>

@@ -16,8 +16,8 @@ export class MoviePageableParams {
     const params = new URLSearchParams();
     params.set('page', this.page.toString());
     params.set('numberOfElementsOnPage', this.numberOfElementsOnPage.toString());
-    // params.set('columnToSort', this.columnToSort.toString());
-    // params.set('sortDirection', this.sortDirection.toString());
+    params.set('columnToSort', this.columnToSort.toString());
+    params.set('sortDirection', this.sortDirection.toString());
     return params;
   }
 }

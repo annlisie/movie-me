@@ -26,7 +26,6 @@ export class UserService {
   }
 
   getRecommendations(f: any, filteringParams: MovieFilteringParams): Observable<any> {
-    console.log(filteringParams);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const headers = new Headers({
       'Authorization': currentUser.token,

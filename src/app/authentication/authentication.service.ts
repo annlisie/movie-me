@@ -40,7 +40,6 @@ export class AuthenticationService {
 
   changePassword(oldPassword: string, newPassword: string, confirmNewPassword: string) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser);
     const headers = new Headers({
       'Authorization': currentUser.token,
       'Content-Type': 'application/json',
