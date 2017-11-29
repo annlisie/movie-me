@@ -64,7 +64,7 @@
 
 <!--Select value to sort-->
 <select class="filterButtons btn btn-default" [(ngModel)]="selectedValue" (change)="setSelectedValueToSort($event)" *ngIf="includeColumnToSortSelect">
-    <option *ngFor="let v of values; let i = index" [value]="i">{{v.name}}</option>
+    <option *ngFor="let v of values; let i = index" [value]="i" [selected]="selectedValueRestored ? v.id == selectedValueRestored.id : false">{{v.name}}</option>
 </select>
 
 <!--Filter form-->
