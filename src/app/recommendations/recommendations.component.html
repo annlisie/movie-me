@@ -1,7 +1,7 @@
 <div class="container">
   <form (ngSubmit)="f.valid && getRecommendations(f)" #f="ngForm" novalidate>
     <div class="form-group">
-      <h3>Wyszukiwanie kontekstowe</h3>
+      <h3>Rekomendacje</h3>
     </div>
     <div *ngFor="let contextParameter of contextParams" class="form-group" [ngClass]="{ 'has-error': f.submitted }">
       <label>{{contextParameter.readableFieldName}}</label>
