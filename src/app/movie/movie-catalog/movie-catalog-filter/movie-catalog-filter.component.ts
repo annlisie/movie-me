@@ -68,11 +68,13 @@ export class MovieCatalogFilterComponent implements OnInit {
               x => this.filteringParams.productionYearEnd = x)
           ];
 
-        this.values.forEach(value => {
-          if (this.pageableParams.columnToSort === value.englishName && this.pageableParams.sortDirection === value.order) {
-            this.selectedValueRestored = value;
-          }
-        });
+        if (this.pageableParams) {
+          this.values.forEach(value => {
+            if (this.pageableParams.columnToSort === value.englishName && this.pageableParams.sortDirection === value.order) {
+              this.selectedValueRestored = value;
+            }
+          });
+        }
 
         this.countActiveFilters();
       });
