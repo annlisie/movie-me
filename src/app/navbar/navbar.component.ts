@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
         if (this.showNavBar) {
           let user = JSON.parse(localStorage.getItem('currentUser'));
           this.userEmail = user.email;
-          console.log(this.userEmail);
         }
       }
     });

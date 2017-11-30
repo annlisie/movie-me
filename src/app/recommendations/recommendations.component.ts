@@ -32,12 +32,10 @@ export class RecommendationsComponent implements OnInit {
       const formParams = JSON.parse(localStorage.getItem('rememberedSearch'));
       this.filteringParams = new MovieFilteringParams();
       this.filteringParams.fill(JSON.parse(localStorage.getItem('filteringParams')));
-      console.log(this.filteringParams);
       this.userService.getRecommendations(formParams, this.filteringParams)
         .subscribe(
           (data) => {
             this.recommendedMovies = data.data;
-            console.log(this.recommendedMovies);
           }, // Reach here if res.status >= 200 && <= 299
           (err) => {
             this.getMoviesForReplacement();
@@ -66,7 +64,6 @@ export class RecommendationsComponent implements OnInit {
       alert('Aby otrzymać rekomendacje musisz być zalogowany!');
       return;
     }
-    console.log(f.value);
     const keyNames = Object.keys(f.value);
     for (const i of keyNames) {
       if (f.value[i] === '' || f.value[i].isUndefined) {
@@ -83,7 +80,6 @@ export class RecommendationsComponent implements OnInit {
       .subscribe(
         (data) => {
           this.recommendedMovies = data.data;
-          console.log(this.recommendedMovies);
         }, // Reach here if res.status >= 200 && <= 299
         (err) => {
           alert('Oceń więcej filmów w wybranym kontekście lub zmień filtry, by otrzymać rekomendacje.');

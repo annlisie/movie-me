@@ -46,7 +46,6 @@ export class RatingFormComponent implements OnInit {
         f.value[i] = 'EMPTY';
       }
     }
-    console.log(f.value['ratingValue']);
 
     this.success = false;
     this.error = '';

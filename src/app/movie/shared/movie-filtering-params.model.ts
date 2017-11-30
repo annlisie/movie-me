@@ -11,13 +11,7 @@ export class MovieFilteringParams {
   numberOfRatingsStart: number;
   numberOfRatingsEnd: number;
   hideRated = false;
-  columnToSort: string;
-  sortDirection: string;
 
-
-  constructor() {
-    this.columnToSort = 'id';
-  }
   public fill(object) {
     const keys = Object.keys(object);
     keys.forEach((k) => {
@@ -53,7 +47,6 @@ export class MovieFilteringParams {
     const params = new URLSearchParams();
     for (const property in this) {
       if (this.hasOwnProperty(property) && this[property] != null) {
-        console.log('LOG: prop='  + property + ' val=' + this[property]);
         params.set(property, this[property].toString());
       }
     }

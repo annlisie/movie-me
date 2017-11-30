@@ -5,6 +5,7 @@ import {Filter} from './model/filter.model';
 import {FilterField} from './model/filter-field.model';
 import {Genre} from './model/genre.model';
 import {MovieService} from '../../shared/movie.service';
+import {MoviePageableParams} from "../../shared/movie-pageable-params.model";
 
 @Component({
   selector: 'app-movie-catalog-filter',
@@ -14,6 +15,7 @@ import {MovieService} from '../../shared/movie.service';
 
 export class MovieCatalogFilterComponent implements OnInit {
 
+  @Input() pageableParams: MoviePageableParams;
   @Input() filteringParams: MovieFilteringParams;
   @Input() includeHideRatedFilter = true;
   @Input() includeColumnToSortSelect = true;
@@ -28,6 +30,8 @@ export class MovieCatalogFilterComponent implements OnInit {
   private genres: Genre[];
   private selectedGenres: Genre[] = [];
   private selectedValue;
+
+  private numberOfActiveFilters = 0;
 
   constructor(private movieService: MovieService) {
   }
@@ -99,9 +103,9 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
 
-  deselect(){
-      for (var i = 0; i < this.genres.length; i++){
-        if(this.genres[i].checkboxActive == true){
+  deselect() {
+      for (let i = 0; i < this.genres.length; i++){
+        if (this.genres[i].checkboxActive == true){
           this.genres[i].checkboxActive = false;
         }
       }
@@ -135,6 +139,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   }
 
   private callPartent_loadMovies() {
+    this.countActiveFilters();
     this.applyFilterEvent.next(this.filteringParams);
   }
 
@@ -185,19 +190,34 @@ export class MovieCatalogFilterComponent implements OnInit {
     {id: 5, name: 'Ocena Filmwebu rosnąco', englishName: 'filmwebRating', order: 'ASC'},
     {id: 6, name: 'Ocena Filmwebu malejąco', englishName: 'filmwebRating', order: 'DESC'},
     {id: 7, name: 'Ocena Movieme rosnąco', englishName: 'customRating', order: 'ASC'},
-    {id: 8, name: 'Ocena Movieme malejąco', englishName: 'customRating', order: 'DESC'},
-    {id: 9, name: 'Liczba ocen rosnąco', englishName: 'numberOfRatings', order: 'ASC'},
-    {id: 10, name: 'Liczba ocen malejąco', englishName: 'numberOfRatings', order: 'DESC'}
+    {id: 8, name: 'Ocena Movieme malejąco', englishName: 'customRating', order: 'DESC'}
   ];
 
 
   setSelectedValueToSort(){
     var value = this.values[this.selectedValue];
 
-    this.filteringParams.columnToSort = value.englishName;
-    this.filteringParams.sortDirection = value.order;
+    this.pageableParams.columnToSort = value.englishName;
+    this.pageableParams.sortDirection = value.order;
 
     this.callPartent_loadMovies();
+  }
+
+  private countActiveFilters(): void {
+    let activeFilters = this.selectedGenres.length;
+    for (const key of this.objectKeys(this.filteringParams)) {
+      if (this.filteringParams[key] != null) {
+        if (key === 'hideRated' && this.filteringParams[key] === false) {
+          continue;
+        }
+        if(key === 'genresIds') {
+          continue;
+        }
+        activeFilters++;
+      }
+    }
+
+    this.numberOfActiveFilters = activeFilters;
   }
 
 }

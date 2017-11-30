@@ -2,7 +2,7 @@
 
 <div class="activeFilters">
   <div class="chosenFilters" *ngFor="let key of objectKeys(filteringParams)">
-    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != 'genresIds' && key != 'sortDirection' && key !='columnToSort'">
+    <ng-container *ngIf="filteringParams[key] && key != 'searchedTerm' && key != 'genresIds'">
 
       <ng-container *ngIf="key != 'hideRated'">
           <span class="tag label label-default">
@@ -19,7 +19,7 @@
       </ng-container>
 
     </ng-container>
-</div>
+  </div>
 
     <!-- Selected genres -->
     <div class="chosenFilters" *ngFor="let selectedGenre of selectedGenres; let i = index">
@@ -29,7 +29,7 @@
       </span>
     </div>
 
-    <div class="chosenFilters" [style.visibility]="((selectedGenres.length == 0) && ( filteringParams[key] == null)) ? 'hidden' : 'visible'">
+    <div class="chosenFilters" [style.visibility]="numberOfActiveFilters >= 2 ? 'visible' : 'hidden'">
         <span class="tag label label-default removeAllFilters">
         <span>Usuń wszystkie filtry</span>
             <a (click)="clearAllFilters()"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
