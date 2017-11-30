@@ -22,4 +22,9 @@
     <app-movie-catalog-filter [filteringParams]="filteringParams" [includeHideRatedFilter]="false" [includeColumnToSortSelect]="false" (applyFilterEvent)="getRecommendations(f)"></app-movie-catalog-filter>
     <app-movie-catalog-element *ngFor="let movie of recommendedMovies" [movie]="movie"></app-movie-catalog-element>
   </div>
+
+  <div *ngIf="recommendedMovies && recommendedMovies.length == 0" class="jumbotron">
+    <h3>Brak filmów spełniających kryteria!</h3>
+  </div>
+
 </div>
