@@ -25,7 +25,7 @@
     </app-pagination>
 
   </div>
-  <div *ngIf="!loading && !movies.length" class="jumbotron">
+  <div *ngIf="!loading && movies && !movies.length" class="jumbotron">
     <h3>Brak filmów spełniających kryteria!</h3>
   </div>
 

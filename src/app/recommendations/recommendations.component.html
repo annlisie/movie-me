@@ -1,7 +1,7 @@
 <div class="container">
   <form (ngSubmit)="f.valid && getRecommendations(f)" #f="ngForm" novalidate>
     <div class="form-group">
-      <h3>Wyszukiwanie kontekstowe</h3>
+      <h3>Rekomendacje</h3>
     </div>
     <div *ngFor="let contextParameter of contextParams" class="form-group" [ngClass]="{ 'has-error': f.submitted }">
       <label>{{contextParameter.readableFieldName}}</label>
@@ -18,8 +18,13 @@
       <button type="submit" class="btn btn-block">Pobierz rekomendacje</button>
     </div>
   </form>
-  <app-movie-catalog-filter [filteringParams]="filteringParams" [includeHideRatedFilter]="false" [includeColumnToSortSelect]="false" (applyFilterEvent)="getRecommendations(f)"></app-movie-catalog-filter>
   <div *ngIf="recommendedMovies">
+    <app-movie-catalog-filter [filteringParams]="filteringParams" [includeHideRatedFilter]="false" [includeColumnToSortSelect]="false" (applyFilterEvent)="getRecommendations(f)"></app-movie-catalog-filter>
     <app-movie-catalog-element *ngFor="let movie of recommendedMovies" [movie]="movie"></app-movie-catalog-element>
   </div>
+
+  <div *ngIf="recommendedMovies && recommendedMovies.length == 0" class="jumbotron">
+    <h3>Brak filmów spełniających kryteria!</h3>
+  </div>
+
 </div>

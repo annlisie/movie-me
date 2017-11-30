@@ -1,16 +1,16 @@
 import {URLSearchParams} from "@angular/http";
 export class MovieFilteringParams {
-  genresIds: number[];
-  searchedTerm: string;
-  productionYearStart: number;
-  productionYearEnd: number;
-  lengthInMinutesStart: number;
-  lengthInMinutesEnd: number;
-  ratingStart: number;
-  ratingEnd: number;
-  numberOfRatingsStart: number;
-  numberOfRatingsEnd: number;
-  hideRated = false;
+  genresIds: number[] = null;
+  searchedTerm: string = null;
+  productionYearStart: number = null;
+  productionYearEnd: number = null;
+  lengthInMinutesStart: number = null;
+  lengthInMinutesEnd: number = null;
+  ratingStart: number = null;
+  ratingEnd: number = null;
+  numberOfRatingsStart: number = null;
+  numberOfRatingsEnd: number = null;
+  hideRated = null;
 
   public fill(object) {
     const keys = Object.keys(object);

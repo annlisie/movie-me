@@ -6,6 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import {Subject} from 'rxjs/Subject';
 import {MoviePageableParams} from '../shared/movie-pageable-params.model';
 import {MovieFilteringParams} from '../shared/movie-filtering-params.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-movie-catalog',
@@ -28,7 +29,7 @@ export class MovieCatalogComponent implements OnInit {
   pageableParams: MoviePageableParams;
   filteringParams: MovieFilteringParams;
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pageableParams = new MoviePageableParams();
     this.filteringParams = new MovieFilteringParams();
     this.searchValueChanged
@@ -42,14 +43,27 @@ export class MovieCatalogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadMovies(0);
+    this.loading = true;
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        Object.keys(params).forEach(key => {
+          if (this.filteringParams.hasOwnProperty(key)) {
+            this.filteringParams[key] = params[key];
+          }
+          if (this.pageableParams.hasOwnProperty(key)) {
+            this.pageableParams[key] = params[key];
+          }
+        });
+
+        this.movieService.getMovies(this.pageableParams, this.filteringParams)
+          .then(response => this.handleResponse(response));
+      });
   }
 
   loadMovies(page: number) {
-    this.loading = true;
     this.pageableParams.page = page;
-    this.movieService.getMovies(this.pageableParams, this.filteringParams)
-      .then(response => this.handleResponse(response));
+    const queryParams = Object.assign(this.pageableParams, this.filteringParams);
+    this.router.navigate(['/movies'], {queryParams: queryParams});
   }
 
 

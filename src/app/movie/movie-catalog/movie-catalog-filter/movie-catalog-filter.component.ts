@@ -30,6 +30,7 @@ export class MovieCatalogFilterComponent implements OnInit {
   private genres: Genre[];
   private selectedGenres: Genre[] = [];
   private selectedValue;
+  private selectedValueRestored;
 
   private numberOfActiveFilters = 0;
 
@@ -48,24 +49,35 @@ export class MovieCatalogFilterComponent implements OnInit {
             this.selectedGenres.push(genre);
           }
         }
+
+        const ratingValues = this.generateArray(1, 10);
+        const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
+        this.filters =
+          [
+            Filter.create(
+              'Ocena (Filmweb)', 'glyphicon glyphicon-star', ratingValues,
+              x => this.filteringParams.ratingStart = x,
+              x => this.filteringParams.ratingEnd = x),
+
+            Filter.create('Czas trwania (min)', 'glyphicon glyphicon-time', null,
+              x => this.filteringParams.lengthInMinutesStart = x,
+              x => this.filteringParams.lengthInMinutesEnd = x),
+
+            Filter.create('Rok produkcji', 'glyphicon glyphicon-calendar', productionYearValues,
+              x => this.filteringParams.productionYearStart = x,
+              x => this.filteringParams.productionYearEnd = x)
+          ];
+
+        if (this.pageableParams) {
+          this.values.forEach(value => {
+            if (this.pageableParams.columnToSort === value.englishName && this.pageableParams.sortDirection === value.order) {
+              this.selectedValueRestored = value;
+            }
+          });
+        }
+
+        this.countActiveFilters();
       });
-    const ratingValues = this.generateArray(1, 10);
-    const productionYearValues = this.generateArray(1930, (new Date()).getFullYear()).reverse();
-    this.filters =
-      [
-        Filter.create(
-          'Ocena (Filmweb)', 'glyphicon glyphicon-star', ratingValues,
-          x => this.filteringParams.ratingStart = x,
-          x => this.filteringParams.ratingEnd = x),
-
-        Filter.create('Czas trwania (min)', 'glyphicon glyphicon-time', null,
-          x => this.filteringParams.lengthInMinutesStart = x,
-          x => this.filteringParams.lengthInMinutesEnd = x),
-
-        Filter.create('Rok produkcji', 'glyphicon glyphicon-calendar', productionYearValues,
-          x => this.filteringParams.productionYearStart = x,
-          x => this.filteringParams.productionYearEnd = x)
-      ];
   }
 
   setSelectedFilter(filter: Filter) {
@@ -174,7 +186,11 @@ export class MovieCatalogFilterComponent implements OnInit {
 
 
   showOrHideRatedMovies() {
-    this.filteringParams.hideRated = !this.filteringParams.hideRated;
+    if (this.filteringParams.hideRated == null) {
+      this.filteringParams.hideRated = true;
+    } else {
+      this.filteringParams.hideRated = null;
+    }
     this.callPartent_loadMovies();
   }
 
@@ -216,7 +232,6 @@ export class MovieCatalogFilterComponent implements OnInit {
         activeFilters++;
       }
     }
-
     this.numberOfActiveFilters = activeFilters;
   }
 
