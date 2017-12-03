@@ -59,6 +59,11 @@ export class MovieCatalogFilterComponent implements OnInit {
               x => this.filteringParams.ratingStart = x,
               x => this.filteringParams.ratingEnd = x),
 
+            Filter.create(
+              'Ocena (Movieme)', 'glyphicon glyphicon-star', ratingValues,
+              x => this.filteringParams.customRatingStart = x,
+              x => this.filteringParams.customRatingEnd = x),
+
             Filter.create('Czas trwania (min)', 'glyphicon glyphicon-time', null,
               x => this.filteringParams.lengthInMinutesStart = x,
               x => this.filteringParams.lengthInMinutesEnd = x),

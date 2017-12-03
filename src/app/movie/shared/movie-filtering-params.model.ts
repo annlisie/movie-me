@@ -8,6 +8,8 @@ export class MovieFilteringParams {
   lengthInMinutesEnd: number = null;
   ratingStart: number = null;
   ratingEnd: number = null;
+  customRatingStart: number = null;
+  customRatingEnd: number = null;
   numberOfRatingsStart: number = null;
   numberOfRatingsEnd: number = null;
   hideRated = null;
@@ -31,9 +33,13 @@ export class MovieFilteringParams {
       case 'lengthInMinutesEnd':
         return 'Długość w minutach do';
       case 'ratingStart':
-        return 'Ocena od';
+        return 'Ocena (Filmweb) od';
       case 'ratingEnd':
-        return 'Ocena do';
+        return 'Ocena (Filmweb) do';
+      case 'customRatingStart':
+        return 'Ocena (Movieme) od';
+      case 'customRatingEnd':
+        return 'Ocena (Movieme) do';
       case 'numberOfRatingsStart':
         return 'Liczba ocen od';
       case 'numberOfRatingsEnd':
