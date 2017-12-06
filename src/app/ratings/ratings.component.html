@@ -1,0 +1,36 @@
+<div class="container">
+  <table class="table table-fixed table-hover">
+    <thead>
+    <tr>
+      <th class="col-xs-3">Tytuł</th>
+      <th class="col-xs-4">Ocena</th>
+      <th class="col-xs-2">Data</th>
+      <th class="col-xs-3">Kontekst</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rating of ratings">
+      <td class="col-xs-3"><a routerLink="/movies/{{rating.movieId}}">{{rating.movieTitle}}</a></td>
+      <td class="col-xs-4">
+        <div class="ratingValue">({{rating.ratingValue}})</div>
+        <div class="ratingStars">
+        <span class ="star" *ngFor="let item of createRange(rating.ratingValue)"></span>
+        <span class ="greyStar" *ngFor="let item of createRange(10-rating.ratingValue)"></span>
+        </div>
+      </td>
+      <td class="col-xs-2"><span>{{parseDateTime(rating.dateTime)}}</span></td>
+      <td class="col-xs-3">
+        <ul>
+          <li *ngFor="let value of getReadableValues(rating.contextParams)">{{value}}</li>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-pagination
+    (goPage)="changePage($event)"
+    [currentPage]="currentPage"
+    [totalPages]="totalPages">
+  </app-pagination>
+</div>

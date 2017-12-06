@@ -22,6 +22,7 @@ import {ChangePasswordComponent} from "./authentication/change-password/change-p
 import {UserService} from "./user/user.service";
 import {RatingHistoryComponent} from "./movie/movie-catalog/rating-history/rating-history.component";
 import {MovieService} from "./movie/shared/movie.service";
+import { RatingsComponent } from './ratings/ratings.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'recommendations/:id', component: SingleMovieComponent},
   { path: 'movies', component: MovieCatalogComponent},
   { path: 'movies/:id', component: SingleMovieComponent},
+  { path: 'myRatings', component: RatingsComponent},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -53,7 +55,8 @@ const routes: Routes = [
     SingleMovieComponent,
     RatingFormComponent,
     ChangePasswordComponent,
-    RatingHistoryComponent
+    RatingHistoryComponent,
+    RatingsComponent
   ],
   imports: [
     BrowserModule,

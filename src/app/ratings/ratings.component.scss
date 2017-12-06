@@ -1,0 +1,39 @@
+.star {
+  float: left;
+  margin: auto;
+  &:before {
+    display: flex;
+    font-size: 30px;
+    content: "\2605 "; /* full star */
+    color: #990033;
+  }
+}
+
+.greyStar {
+  @extend .star;
+  &:before {
+    color: grey;
+  }
+}
+
+.ratingValue {
+  float: left;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+@media screen and (min-width:900px){
+  .ratingValue {
+    margin-top: 12px;
+  }
+}
+
+.ratingStars {
+  float: left;
+  margin-top: 0px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
