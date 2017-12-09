@@ -82,7 +82,7 @@ export class RecommendationsComponent implements OnInit {
           this.recommendedMovies = data.data;
         }, // Reach here if res.status >= 200 && <= 299
         (err) => {
-          alert('Oceń więcej filmów w wybranym kontekście lub zmień filtry, by otrzymać rekomendacje.');
+          alert('Oceń więcej filmów w wybranym kontekście lub zmień filtry, by otrzymać lepsze rekomendacje.');
           this.recommendedMovies = null;
           this.getMoviesForReplacement();
         });
