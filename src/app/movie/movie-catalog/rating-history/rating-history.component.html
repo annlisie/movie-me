@@ -4,15 +4,21 @@
     <thead>
       <tr>
         <th class="col-xs-2">Data</th>
-        <th class="col-xs-5">Ocena</th>
-        <th class="col-xs-5">Kontekst</th>
+        <th class="col-xs-6">Ocena</th>
+        <th class="col-xs-4">Kontekst</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let rating of movie.ratings">
         <td class="col-xs-2"><span>{{parseDateTime(rating.dateTime)}}</span></td>
-        <td class="col-xs-5"><span class ="star" *ngFor="let item of createRange(rating.ratingValue)"></span></td>
-        <td class="col-xs-5">
+        <td class="col-xs-6">
+          <div class="ratingValue">({{rating.ratingValue}})</div>
+          <div class="ratingStars">
+            <span class ="star" *ngFor="let item of createRange(rating.ratingValue)"></span>
+            <span class ="greyStar" *ngFor="let item of createRange(10-rating.ratingValue)"></span>
+          </div>
+        </td>
+        <td class="col-xs-4">
           <ul>
             <li *ngFor="let value of getReadableValues(rating.contextParams)">{{value}}</li>
           </ul>
